@@ -3,14 +3,15 @@ import Navbar from "../../Components/Shared/Navbar";
 import Footer from "../../Components/Shared/Footer";
 
 const Home = () => {
-
-    return (
-        <div>
-            <Navbar></Navbar>
-            <Outlet></Outlet>
-            <Footer></Footer>
-        </div>
-    );
+  return (
+    <main className="container mx-auto">
+      <div className="h-16">
+        <Navbar></Navbar>
+      </div>
+      <Outlet></Outlet>
+      <Footer></Footer>
+    </main>
+  );
 };
 
 export default Home;
