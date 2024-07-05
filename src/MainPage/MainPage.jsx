@@ -7,10 +7,10 @@ const MainPage = () => {
     <div>
       <main className="container mx-auto">
         <div className="h-16">
-          <Navbar></Navbar>
+          <Navbar />
         </div>
-        <Outlet></Outlet>
-        <Footer></Footer>
+        <Outlet />
+        <Footer />
       </main>
     </div>
   );
