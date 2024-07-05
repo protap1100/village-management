@@ -5,13 +5,13 @@ import Navbar from "../Components/Shared/Navbar";
 const MainLayout = () => {
   return (
     <div>
-      <div className="h-16">
-        <Navbar />
+      <div className="h-16 ">
+        <Navbar></Navbar>
       </div>
-      <main className="container mx-auto">
-        <Outlet />
+      <main className=" container mx-auto">
+        <Outlet></Outlet>
       </main>
-      <Footer />
+      <Footer></Footer>
     </div>
   );
 };

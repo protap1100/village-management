@@ -11,14 +11,14 @@ const Navbar = () => {
     { name: "Member", route: "/member" },
     { name: "Occasions", route: "/occasions" },
     { name: "Projects", route: "/projects" },
-    { name: "About", route: "/aboutUs" },
     { name: "Rules", route: "/rules" },
+    { name: "About", route: "/aboutUs" },
   ];
   let [open, setOpen] = useState(false);
 
   return (
-    <div className="shadow-md w-full fixed top-0 left-0">
-      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
+    <div className="shadow-md w-full fixed">
+      <div className="md:flex items-center justify-between bg-white py-3 md:px-10 px-7">
         <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
         <Link to='/'> BGTS</Link>
         </div>
@@ -46,7 +46,7 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          <button className="btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static hover:bg-blue-400">
+          <button className=" bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static hover:bg-blue-400">
            <Link to='/login'>Login</Link>
           </button>
         </ul>
