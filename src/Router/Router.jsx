@@ -10,6 +10,7 @@ import Rules from "../Pages/Rules/Rules";
 import Login from "../Authentication/Login/Login";
 import SignUp from "../Authentication/SignUp.jsx/SignUp";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import Gallery from "../Pages/Gallery/Gallery";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "/projects",
         element: <Projects></Projects>,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery></Gallery>,
       },
       {
         path:'/contactUs',

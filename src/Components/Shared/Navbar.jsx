@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: "Member", route: "/member" },
     { name: "Occasions", route: "/occasions" },
     { name: "Projects", route: "/projects" },
+    { name: "Gallery", route: "/gallery" },
     { name: "Rules", route: "/rules" },
     { name: "Contact Us", route: "/contactUs" },
     { name: "About", route: "/aboutUs" },
