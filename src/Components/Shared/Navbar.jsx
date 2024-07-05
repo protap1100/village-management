@@ -3,7 +3,7 @@ import {
   Bars3BottomRightIcon,
   XMarkIcon,
 } from "@heroicons/react/24/solid";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const Links = [
@@ -12,6 +12,7 @@ const Navbar = () => {
     { name: "Occasions", route: "/occasions" },
     { name: "Projects", route: "/projects" },
     { name: "About", route: "/aboutUs" },
+    { name: "Rules", route: "/rules" },
   ];
   let [open, setOpen] = useState(false);
 
@@ -19,7 +20,7 @@ const Navbar = () => {
     <div className="shadow-md w-full fixed top-0 left-0">
       <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
         <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
-         BGTS
+        <Link to='/'> BGTS</Link>
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -46,7 +47,7 @@ const Navbar = () => {
             </li>
           ))}
           <button className="btn bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static hover:bg-blue-400">
-            Login
+           <Link to='/login'>Login</Link>
           </button>
         </ul>
       </div>

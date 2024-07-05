@@ -1,16 +1,19 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainPage from "../MainPage/MainPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Member from "../Pages/Member/Member";
 import Occasions from "../Pages/Occasion/Occasions";
 import Projects from "../Pages/Projects/Projects";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import MainLayout from "../Layout/MainLayout";
+import Rules from "../Pages/Rules/Rules";
+import Login from "../Authentication/Login/Login";
+import SignUp from "../Authentication/SignUp.jsx/SignUp";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainPage></MainPage>,
+    element: <MainLayout></MainLayout>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -32,6 +35,18 @@ export const router = createBrowserRouter([
       {
         path: "/aboutUs",
         element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/rules",
+        element: <Rules></Rules>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>,
       },
     ],
   },
