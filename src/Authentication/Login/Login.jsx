@@ -20,26 +20,27 @@ const Login = () => {
         </div>
         <div className="flex-1">
           <form className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
+            <div className="mb-5">
+              <label className="mb-3 block text-base font-medium text-[#07074D]">
+                Full Name
               </label>
               <input
-                type="email"
-                placeholder="Email"
-                className="input input-bordered"
-                required
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Full Name"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
             <div>
-              <label className="label">
-                <span className="label-text">Password</span>
+              <label className="mb-3 block text-base font-medium text-[#07074D]">
+                Password
               </label>
-              <div className="relative animate__animated animate__fadeInDown">
+              <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
-                  className="input animate__animated animate__fadeInDown input-bordered w-full"
+                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                   required
                 />
                 <span
@@ -57,23 +58,31 @@ const Login = () => {
               </div>
             </div>
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
+              <a
+                href="#"
+                className="mb-3 block text-base font-medium text-[#8484a1]"
+              >
                 Forgot password?
               </a>
             </label>
             <div className="form-control mt-6">
-              <button className="p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-300">
-                Login
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold hover:bg-blue-400 transition duration-700 text-white outline-none"
+                >
+                  Login
+                </button>
+              </div>
               <div className="mt-2">
                 <SocialLogin></SocialLogin>
               </div>
             </div>
           </form>
           <div className="text-center">
-            Want to Join Us? 
+            Want to Join Us?
             <Link className="font-bold ml-2 text-green-500" to="/signUp">
-               Register
+              Register
             </Link>
           </div>
         </div>
