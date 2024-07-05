@@ -12,89 +12,109 @@ const Gallery = () => {
         heading={"Our Gallery Section"}
         subHeading={"Beautiful Photos Of Our Villages"}
       ></SectionTitle>
-      <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-5 gap-5">
-        <div className="space-y-2">
-          <img className="rounded-xl w-96 h-60" src={bannerImage1} alt="" />
-          <div className="flex gap-2">
+      <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-5 gap-20 px-3">
+        <div className="space-y-2 relative w-96">
+          <div className="relative">
+            <img className="rounded-xl w-96 h-60" src={bannerImage1} alt="" />
+            <div className="absolute bottom-2 right-2 bg-white text-center font-semibold rounded-xl px-2 py-1">
+              <p>Nature</p>
+            </div>
+          </div>
+          <div className="flex gap-2 mt-2">
             <div className="flex items-center gap-1">
               <p className="font-bold">10</p>
               <p className="text-red-500">
-                <FaHeart></FaHeart>
+                <FaHeart />
               </p>
             </div>
             <div className="flex items-center gap-1">
               <p className="font-bold">5 Comments</p>
               <p className="text-green-500">
-                <FaCommentAlt ></FaCommentAlt >
+                <FaCommentAlt />
               </p>
             </div>
           </div>
           <div>
-            <h1 className=" font-semibold">Added By: Protap Biswas</h1>
-            <h1 className=" font-semibold">Added On: 23 September 2021 </h1>
+            <h1 className="font-semibold">Added By: Protap Biswas</h1>
+            <h1 className="font-semibold">Added On: 23 September 2021</h1>
           </div>
         </div>
-        <div className="space-y-2">
-          <img className="rounded-xl w-96 h-60" src={bannerImage2} alt="" />
-          <div className="flex gap-2">
+        <div className="space-y-2 relative w-96">
+          <div className="relative">
+            <img className="rounded-xl w-96 h-60" src={bannerImage2} alt="" />
+            <div className="absolute bottom-2 right-2 bg-white text-center font-semibold rounded-xl px-2 py-1">
+              <p>Nature</p>
+            </div>
+          </div>
+          <div className="flex gap-2 mt-2">
             <div className="flex items-center gap-1">
               <p className="font-bold">10</p>
               <p className="text-red-500">
-                <FaHeart></FaHeart>
+                <FaHeart />
               </p>
             </div>
             <div className="flex items-center gap-1">
               <p className="font-bold">5 Comments</p>
               <p className="text-green-500">
-                <FaCommentAlt ></FaCommentAlt >
+                <FaCommentAlt />
               </p>
             </div>
           </div>
           <div>
-            <h1 className=" font-semibold">Added By: Protap Biswas</h1>
-            <h1 className=" font-semibold">Added On: 23 September 2021 </h1>
+            <h1 className="font-semibold">Added By: Protap Biswas</h1>
+            <h1 className="font-semibold">Added On: 23 September 2021</h1>
           </div>
         </div>
-        <div className="space-y-2">
-          <img className="rounded-xl w-96 h-60" src={bannerImage3} alt="" />
-          <div className="flex gap-2">
+        <div className="space-y-2 relative w-96">
+          <div className="relative">
+            <img className="rounded-xl w-96 h-60" src={bannerImage3} alt="" />
+            <div className="absolute bottom-2 right-2 bg-white text-center font-semibold rounded-xl px-2 py-1">
+              <p>Nature</p>
+            </div>
+          </div>
+          <div className="flex gap-2 mt-2">
             <div className="flex items-center gap-1">
               <p className="font-bold">10</p>
               <p className="text-red-500">
-                <FaHeart></FaHeart>
+                <FaHeart />
               </p>
             </div>
             <div className="flex items-center gap-1">
               <p className="font-bold">5 Comments</p>
               <p className="text-green-500">
-                <FaCommentAlt ></FaCommentAlt >
+                <FaCommentAlt />
               </p>
             </div>
           </div>
           <div>
-            <h1 className=" font-semibold">Added By: Protap Biswas</h1>
-            <h1 className=" font-semibold">Added On: 23 September 2021 </h1>
+            <h1 className="font-semibold">Added By: Protap Biswas</h1>
+            <h1 className="font-semibold">Added On: 23 September 2021</h1>
           </div>
         </div>
-        <div className="space-y-2">
-          <img className="rounded-xl w-96 h-60" src={bannerImage4} alt="" />
-          <div className="flex gap-2">
+        <div className="space-y-2 relative w-96">
+          <div className="relative">
+            <img className="rounded-xl w-96 h-60" src={bannerImage4} alt="" />
+            <div className="absolute bottom-2 right-2 bg-white text-center font-semibold rounded-xl px-2 py-1">
+              <p>Nature</p>
+            </div>
+          </div>
+          <div className="flex gap-2 mt-2">
             <div className="flex items-center gap-1">
               <p className="font-bold">10</p>
               <p className="text-red-500">
-                <FaHeart></FaHeart>
+                <FaHeart />
               </p>
             </div>
             <div className="flex items-center gap-1">
               <p className="font-bold">5 Comments</p>
               <p className="text-green-500">
-                <FaCommentAlt ></FaCommentAlt >
+                <FaCommentAlt />
               </p>
             </div>
           </div>
           <div>
-            <h1 className=" font-semibold">Added By: Protap Biswas</h1>
-            <h1 className=" font-semibold">Added On: 23 September 2021 </h1>
+            <h1 className="font-semibold">Added By: Protap Biswas</h1>
+            <h1 className="font-semibold">Added On: 23 September 2021</h1>
           </div>
         </div>
       </section>
