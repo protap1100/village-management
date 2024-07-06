@@ -1,7 +1,9 @@
+import SectionTitle from "../../Components/Shared/SectionTitle";
+
 const AboutUs = () => {
   return (
     <div>
-      <h1>About us</h1>
+      <SectionTitle heading={"About us"} subHeading={"Our Goals And Ambitions For Future"}></SectionTitle>
     </div>
   );
 };
