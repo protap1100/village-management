@@ -2,18 +2,26 @@ import { useState, useEffect } from "react";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import sunrise from "../../assets/Media/weather-image/Sunrise.jpg";
 import sunset from "../../assets/Media/weather-image/Sunset.jpg";
+import clear from "../../assets/Media/weather-image/clear.png";
 import clouds from "../../assets/Media/weather-image/clouds.png";
+import drizzle from "../../assets/Media/weather-image/drizzle.png";
+import humidity from "../../assets/Media/weather-image/humidity.png";
+import mist from "../../assets/Media/weather-image/mist.png";
+import rain from "../../assets/Media/weather-image/rain.png";
+import snow from "../../assets/Media/weather-image/snow.png";
+import wind from "../../assets/Media/weather-image/wind.png";
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const weatherApi = import.meta.env.VITE_REACT_APP_WEATHER_API_KEY;
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         const response = await fetch(
-          "https://api.openweathermap.org/data/2.5/weather?lat=23.960787488560737&lon=90.10198030347681&appid=215b120bee26e404e9c8eafc8297ff65&units=metric"
+          `https://api.openweathermap.org/data/2.5/weather?lat=23.960787488560737&lon=90.10198030347681&appid=${weatherApi}&units=metric`
         );
         const data = await response.json();
         if (response.ok) {
@@ -34,7 +42,7 @@ const Weather = () => {
     const intervalId = setInterval(fetchWeather, 600000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [weatherApi]);
 
   const sunriseTimestamp = weather?.sys?.sunrise;
   const sunsetTimestamp = weather?.sys?.sunset;
