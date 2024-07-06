@@ -25,8 +25,8 @@ const Banner = () => {
         heading={"Welcome To Our Village"}
         subHeading={"We Believe in Unity"}
       ></SectionTitle>
-      <div className="flex justify-center relative top-10">
-        <div className=" text-center text-xl lg:text-2xl font-bold text-green-500 absolute z-10 bg-green-50 w-2/4">
+      <div className="flex justify-center relative top-20">
+        <div className="text-center text-xl lg:text-2xl font-bold text-green-500 absolute z-10 bg-green-50 w-full mx-2 lg:w-2/4">
           <h1>
             Our Goal Is To: {text} <Cursor cursorStyle="_" cursorColor="green" />
           </h1>
