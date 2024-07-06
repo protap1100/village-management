@@ -124,7 +124,7 @@ const Weather = () => {
         </h1>
         <div className="grid justify-center">
           <h1 className="text-center text-5xl font-bold text-green-400">
-            {weather?.main?.temp}°C
+            {weather?.main?.temp}<sup>°C</sup>
           </h1>
           <h1 className="text-center text-2xl font-bold text-green-400">
             {weather?.weather[0]?.main}
