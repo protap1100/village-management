@@ -11,8 +11,8 @@ const Login = () => {
   return (
     <>
       <SectionTitle
-        heading="Login Here"
-        subHeading="Use Email And Password to Join"
+        heading={"Login Here"}
+        subHeading={"Use Email And Password to Join"}
       ></SectionTitle>
       <section className="flex flex-col lg:flex-row items-center justify-center">
         <div className="flex-1">

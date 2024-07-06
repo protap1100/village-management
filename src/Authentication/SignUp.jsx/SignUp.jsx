@@ -11,8 +11,8 @@ const SignUp = () => {
   return (
     <div>
       <SectionTitle
-        heading="Register Here"
-        subHeading="Fill Up The Form To Join Us"
+        heading={"Register Here"}
+        subHeading={"Fill Up The Form To Join Us"}
       ></SectionTitle>
       <div className="mt-10 flex flex-col lg:flex-row justify-center items-center">
         <div className="flex-1">
