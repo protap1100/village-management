@@ -12,7 +12,7 @@ const Member = () => {
           <label className="mb-3 text-2xl block font-medium text-green-700">
            Search For Member
           </label>
-         <div className="flex gap-4 justify-center">
+         <div className="flex gap-4 flex-col lg:flex-row justify-center">
          <input
             type="text"
             name="name"

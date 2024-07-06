@@ -19,7 +19,7 @@ const Navbar = () => {
   let [open, setOpen] = useState(false);
 
   return (
-    <div className="shadow-md w-full fixed z-10">
+    <div className="shadow-md w-full fixed z-50">
       <div className="md:flex items-center justify-between bg-white py-3 md:px-10 px-7">
         <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
         <Link to='/'> BGTS</Link>

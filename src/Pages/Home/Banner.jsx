@@ -4,35 +4,58 @@ import bannerImage3 from "../../assets/Media/Banner/Village-Banner3.png";
 import bannerImage4 from "../../assets/Media/Banner/Village-Banner4.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import SectionTitle from "../../Components/Shared/SectionTitle";
+import { Cursor, useTypewriter } from "react-simple-typewriter";
 
 const Banner = () => {
+  const [text] = useTypewriter({
+    words: [
+      "Make Village Beautiful",
+      "Keep Village Clean",
+      "Help Each Other",
+      "Make it Look Clean",
+    ],
+    loop: true,
+    delaySpeed: 1000,
+    cursorBlinking: true,
+  });
   return (
-    <Carousel
-      className=" mx-auto cursor-pointer w-4/6"
-      autoFocus={true}
-      autoPlay={true}
-      stopOnHover={true}
-      swipeable={true}
-      infiniteLoop={true}
-      interval={2000}
-    >
-      <div>
-        <img className="w-full" src={bannerImage1} />
-        <p className="legend">Experience the serene beauty of rolling hills and lush green fields in our picturesque village.</p>
+    <div>
+      <SectionTitle
+        heading={"Welcome To Our Village"}
+        subHeading={"We Believe in Unity"}
+      ></SectionTitle>
+      <div className="flex justify-center relative top-10">
+        <div className=" text-center text-xl lg:text-2xl font-bold text-green-500 absolute z-10 bg-green-50 w-2/4">
+          <h1>
+            Our Goal Is To: {text} <Cursor cursorStyle="_" cursorColor="green" />
+          </h1>
+          <h1 className="text-xl">We are always working on building our community stronger</h1>
+        </div>
       </div>
-      <div>
-        <img className="w-full" src={bannerImage2} />
-        <p className="legend">Discover the vibrant culture of our village, where traditional crafts and festivities bring the community together. Enjoy scenic walks, local markets</p>
-      </div>
-      <div>
-        <img className="w-full" src={bannerImage3} />
-        <p className="legend">Explore our coastal village, boasting stunning seaside views and sandy beaches. Perfect for nature lovers, it offers fishing, boating, and seaside dining..</p>
-      </div>
-      <div>
-        <img className="w-full" src={bannerImage4} />
-        <p className="legend">Immerse yourself in the historical charm of our village, where ancient architecture meets modern comforts.</p>
-      </div>
-    </Carousel>
+      <Carousel
+        className="mt-5 mx-auto cursor-pointer w-full lg:w-4/6 relative"
+        autoFocus={true}
+        autoPlay={true}
+        stopOnHover={true}
+        swipeable={true}
+        infiniteLoop={true}
+        interval={2000}
+      >
+        <div className="relative">
+          <img className="w-full" src={bannerImage1} />
+        </div>
+        <div className="relative">
+          <img className="w-full" src={bannerImage2} />
+        </div>
+        <div className="relative">
+          <img className="w-full" src={bannerImage3} />
+        </div>
+        <div className="relative">
+          <img className="w-full" src={bannerImage4} />
+        </div>
+      </Carousel>
+    </div>
   );
 };
 

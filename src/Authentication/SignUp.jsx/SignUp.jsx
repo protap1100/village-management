@@ -82,7 +82,7 @@ const SignUp = () => {
               </div>
             </div>
             <label className="label">
-              <a href="#" className="mb-3 block text-base font-medium text-[#07074D]">
+              <a href="#" className="block text-base font-medium text-[#07074D]">
                 Forgot password?
               </a>
             </label>
