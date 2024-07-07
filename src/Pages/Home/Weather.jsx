@@ -13,6 +13,7 @@ import wind from "../../assets/Media/weather-image/wind.png";
 import { WiHumidity } from "react-icons/wi";
 import { MdVisibility } from "react-icons/md";
 import { TiWeatherDownpour } from "react-icons/ti";
+import Loading from "../../Others/Loading";
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -99,7 +100,7 @@ const Weather = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-5">Loading...</div>;
+    return <Loading></Loading>;
   }
 
   if (error) {
