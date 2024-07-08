@@ -1,4 +1,3 @@
-import Button from "../../Components/Shared/Button";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import ProjectCard from "./ProjectCard";
 
@@ -57,7 +56,6 @@ const Projects = ({search}) => {
           <ProjectCard key={index} project={project}></ProjectCard>
         ))}
       </div>
-      <Button route="/projects" name={"Projects"}></Button>
     </div>
   );
 };

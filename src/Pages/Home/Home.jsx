@@ -1,6 +1,6 @@
 import HomeMember from "../Member/HomeMember";
-import Occasions from "../Occasion/Occasions";
-import Projects from "../Projects/Projects";
+import HomeOccasions from "../Occasion/HomeOccasions";
+import HomeProject from "../Projects/HomeProject";
 import Banner from "./Banner";
 import VillageGallery from "./VillageGallery";
 import Weather from "./Weather";
@@ -12,8 +12,8 @@ const Home = () => {
       <Weather></Weather>
       <VillageGallery></VillageGallery>
       <HomeMember></HomeMember>
-      <Occasions></Occasions>
-      <Projects></Projects>
+      <HomeOccasions></HomeOccasions>
+      <HomeProject></HomeProject>
     </div>
   );
 };

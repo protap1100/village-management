@@ -1,4 +1,3 @@
-import Button from "../../Components/Shared/Button";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import OccasionCard from "./OccasionCard";
 
@@ -36,7 +35,6 @@ const Occasions = ({search}) => {
           <OccasionCard key={index} festival={festival} ></OccasionCard>
         ))}
       </div>
-      <Button route="/occasions" name={"Occasions"}></Button>
     </section>
   );
 };
