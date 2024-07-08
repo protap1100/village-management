@@ -1,9 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
-import Member from "../Pages/Member/Member";
-import Occasions from "../Pages/Occasion/Occasions";
-import Projects from "../Pages/Projects/Projects";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import MainLayout from "../Layout/MainLayout";
 import Rules from "../Pages/Rules/Rules";
@@ -11,6 +8,9 @@ import Login from "../Authentication/Login/Login";
 import SignUp from "../Authentication/SignUp.jsx/SignUp";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import Gallery from "../Pages/Gallery/Gallery";
+import MainOccasions from "../Pages/Occasion/MainOccasions";
+import MainProject from "../Pages/Projects/MainProject";
+import Member from "../Pages/Member/Member";
 
 export const router = createBrowserRouter([
   {
@@ -28,11 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/occasions",
-        element: <Occasions></Occasions>,
+        element: <MainOccasions></MainOccasions>,
       },
       {
         path: "/projects",
-        element: <Projects></Projects>,
+        element: <MainProject></MainProject>,
       },
       {
         path: "/gallery",

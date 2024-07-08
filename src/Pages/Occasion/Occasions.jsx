@@ -1,4 +1,4 @@
-import Search from "../../Components/Shared/Search";
+import Button from "../../Components/Shared/Button";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import OccasionCard from "./OccasionCard";
 
@@ -20,7 +20,7 @@ const festivals = [
   },
 ];
 
-const Occasions = () => {
+const Occasions = ({search}) => {
   return (
     <section>
       <SectionTitle
@@ -28,7 +28,7 @@ const Occasions = () => {
         subHeading={"Our Upcoming Occasions and Festival"}
       ></SectionTitle>
        <div className="text-center text-green-500 mt-5">
-        <Search name={'Occasions'}></Search>
+        {search}
         <h1 className="text-2xl font-bold">Total Occasions Of Occasions: 10</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -36,6 +36,7 @@ const Occasions = () => {
           <OccasionCard key={index} festival={festival} ></OccasionCard>
         ))}
       </div>
+      <Button route="/occasions" name={"Occasions"}></Button>
     </section>
   );
 };

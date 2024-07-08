@@ -36,7 +36,7 @@ const MemberCard = ({ member }) => {
         </a>
       </div>
       <div className="mx-4 mt-4 lg:mx-0 lg:mt-0">
-        <h1 className="text-center p-2 bg-green-600 hover:bg-green-400 text-white cursor-pointer">
+        <h1 className="text-center p-2 bg-green-500 hover:bg-green-700 text-white cursor-pointer">
           View Details
         </h1>
       </div>

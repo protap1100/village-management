@@ -1,4 +1,4 @@
-import Search from "../../Components/Shared/Search";
+import Button from "../../Components/Shared/Button";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import ProjectCard from "./ProjectCard";
 
@@ -41,7 +41,7 @@ const projects = [
   },
 ];
 
-const Projects = () => {
+const Projects = ({search}) => {
   return (
     <div>
       <SectionTitle
@@ -49,7 +49,7 @@ const Projects = () => {
         subHeading={"Our Village Projects"}
       ></SectionTitle>
      <div className="text-center text-green-500 mt-5">
-        <Search name={"Project"}></Search>
+        {search}
         <h1 className="text-2xl font-bold">Total Project Of BGTS: 40</h1>
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 my-5">
@@ -57,6 +57,7 @@ const Projects = () => {
           <ProjectCard key={index} project={project}></ProjectCard>
         ))}
       </div>
+      <Button route="/projects" name={"Projects"}></Button>
     </div>
   );
 };

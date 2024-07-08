@@ -1,4 +1,4 @@
-import Member from "../Member/Member";
+import HomeMember from "../Member/HomeMember";
 import Occasions from "../Occasion/Occasions";
 import Projects from "../Projects/Projects";
 import Banner from "./Banner";
@@ -11,7 +11,7 @@ const Home = () => {
       <Banner></Banner>
       <Weather></Weather>
       <VillageGallery></VillageGallery>
-      <Member></Member>
+      <HomeMember></HomeMember>
       <Occasions></Occasions>
       <Projects></Projects>
     </div>
