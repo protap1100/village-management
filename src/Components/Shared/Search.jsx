@@ -1,4 +1,4 @@
-const Search = ({name}) => {
+const Search = ({ name }) => {
   return (
     <div className="mb-5">
       <label className="mb-3 text-2xl block font-medium text-green-700">
