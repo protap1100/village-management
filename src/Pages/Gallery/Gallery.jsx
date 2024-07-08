@@ -1,4 +1,5 @@
 import { FaCommentAlt, FaHeart } from "react-icons/fa";
+import { GrGallery } from "react-icons/gr";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import bannerImage1 from "../../assets/Media/Banner/Village-Banner1.jpg";
 import bannerImage2 from "../../assets/Media/Banner/Village-Banner2.png";
@@ -9,6 +10,7 @@ const Gallery = () => {
   return (
     <div>
       <SectionTitle
+      icon={<GrGallery></GrGallery>}
         heading={"Our Gallery Section"}
         subHeading={"Beautiful Photos Of Our Villages"}
       ></SectionTitle>

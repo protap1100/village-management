@@ -1,9 +1,10 @@
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import MemberCard from "./MemberCard";
+import { FaPeopleGroup } from "react-icons/fa6";
 
 const members = [
   {
-    id:1,
+    id: 1,
     name: "Natalie Paisley",
     role: "CEO / Co-Founder",
     imageUrl: "https://docs.material-tailwind.com/img/team-3.jpg",
@@ -14,7 +15,7 @@ const members = [
     contact: "natalie@example.com",
   },
   {
-    id:2,
+    id: 2,
     name: "John Doe",
     role: "CTO",
     imageUrl: "https://docs.material-tailwind.com/img/team-2.jpg",
@@ -31,6 +32,7 @@ const MainMember = ({ search }) => {
   return (
     <section className="my-5">
       <SectionTitle
+        icon={<FaPeopleGroup></FaPeopleGroup>}
         heading={"All BGTS Members"}
         subHeading={"Information of All BGTS Members"}
       ></SectionTitle>

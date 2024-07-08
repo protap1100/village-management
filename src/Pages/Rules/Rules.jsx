@@ -1,9 +1,11 @@
 import SectionTitle from "../../Components/Shared/SectionTitle";
+import { FcRules } from "react-icons/fc";
 
 const Rules = () => {
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
       <SectionTitle
+      icon={<FcRules></FcRules>}
         heading={"Rules About Bgts"}
         subHeading={"Rules To Follow To Get The Membership"}
       ></SectionTitle>

@@ -1,9 +1,11 @@
 import SectionTitle from "../../Components/Shared/SectionTitle";
+import { FcAbout } from "react-icons/fc";
 
 const AboutUs = () => {
   return (
     <div className="p-6 bg-gray-100">
       <SectionTitle
+      icon={<FcAbout></FcAbout>}
         heading={"About Us"}
         subHeading={"Our Goals And Ambitions For The Future"}
       ></SectionTitle>

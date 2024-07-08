@@ -11,11 +11,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/swiper-bundle.css";
 import { Pagination, Autoplay } from "swiper/modules";
+import { GrGallery } from "react-icons/gr";
 
 const VillageGallery = () => {
   return (
     <div className="mt-5">
       <SectionTitle
+      icon={<GrGallery></GrGallery>}
         heading={"Our Village Gallery"}
         subHeading={"Group Photo that were taken by our member's"}
       ></SectionTitle>

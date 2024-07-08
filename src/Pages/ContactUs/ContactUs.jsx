@@ -2,7 +2,8 @@ import emailjs from "emailjs-com";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SectionTitle from "../../Components/Shared/SectionTitle";
-import ContactUsImage from '../../assets/Media/Images/contact-us.jpg'
+import ContactUsImage from "../../assets/Media/Images/contact-us.jpg";
+import { LuMessagesSquare } from "react-icons/lu";
 
 const ContactUs = () => {
   const sendEmail = (e) => {
@@ -10,12 +11,12 @@ const ContactUs = () => {
 
     emailjs
       .sendForm(
-        "Resume-Service", 
+        "Resume-Service",
         "template_0avua0t",
         e.target,
         "vn2WJCE5ovXFUzwct"
       )
-    .then(
+      .then(
         (result) => {
           console.log(result.text);
           toast.success("Message Sent Successfully");
@@ -31,12 +32,16 @@ const ContactUs = () => {
 
   return (
     <div className="my-5 container mx-auto">
-      <SectionTitle heading={'Message Us'} subHeading={'We Are Looking for your messages'}></SectionTitle>
+      <SectionTitle
+      icon={<LuMessagesSquare></LuMessagesSquare>}
+        heading={"Message Us"}
+        subHeading={"We Are Looking for your messages"}
+      ></SectionTitle>
       <section className="py-6 mt-5 bg-gray-200 dark:text-gray-900 rounded-xl">
         <div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
-         <div className="flex items-center justify-center p-12">
+          <div className="flex items-center justify-center p-12">
             <img src={ContactUsImage} alt="" />
-         </div>
+          </div>
           <div className="flex items-center justify-center p-12">
             <ToastContainer></ToastContainer>
             <div className="mx-auto w-full max-w-[550px]">

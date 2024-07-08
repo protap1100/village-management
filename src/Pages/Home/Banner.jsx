@@ -9,6 +9,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
+import { GiVillage } from "react-icons/gi";
 
 const Banner = () => {
   const [text] = useTypewriter({
@@ -25,6 +26,7 @@ const Banner = () => {
   return (
     <div>
       <SectionTitle
+      icon={<GiVillage></GiVillage>}
         heading={"Welcome To Our Village"}
         subHeading={"We Believe in Unity"}
       ></SectionTitle>

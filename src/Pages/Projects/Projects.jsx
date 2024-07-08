@@ -1,5 +1,6 @@
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import ProjectCard from "./ProjectCard";
+import { SiCodeproject } from "react-icons/si";
 
 const projects = [
   {
@@ -40,14 +41,15 @@ const projects = [
   },
 ];
 
-const Projects = ({search}) => {
+const Projects = ({ search }) => {
   return (
     <div>
       <SectionTitle
+        icon={<SiCodeproject></SiCodeproject>}
         heading={"Our Projects"}
         subHeading={"Our Village Projects"}
       ></SectionTitle>
-     <div className="text-center text-green-500 mt-5">
+      <div className="text-center text-green-500 mt-5">
         {search}
         <h1 className="text-2xl font-bold">Total Project Of BGTS: 40</h1>
       </div>

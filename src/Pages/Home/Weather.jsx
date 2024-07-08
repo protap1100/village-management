@@ -14,6 +14,7 @@ import { WiHumidity } from "react-icons/wi";
 import { MdVisibility } from "react-icons/md";
 import { TiWeatherDownpour } from "react-icons/ti";
 import Loading from "../../Others/Loading";
+import { TiWeatherPartlySunny } from "react-icons/ti";
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -113,6 +114,7 @@ const Weather = () => {
   return (
     <>
       <SectionTitle
+      icon={<TiWeatherPartlySunny></TiWeatherPartlySunny>}
         heading={"Weather"}
         subHeading={"Current Weather in Our Village"}
       />
