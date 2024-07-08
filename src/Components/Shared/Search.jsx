@@ -7,7 +7,7 @@ const Search = ({ name }) => {
       <div className="flex gap-4 flex-col lg:flex-row justify-center">
         <input
           type="text"
-          name="name"
+          name={name}
           id="name"
           placeholder={`Search For ${name}`}
           className="lg:w-1/6 w-full  rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280]  focus:border-[#6A64F1]"
