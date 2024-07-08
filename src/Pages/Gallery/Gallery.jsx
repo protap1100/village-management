@@ -5,10 +5,15 @@ import bannerImage1 from "../../assets/Media/Banner/Village-Banner1.jpg";
 import bannerImage2 from "../../assets/Media/Banner/Village-Banner2.png";
 import bannerImage3 from "../../assets/Media/Banner/Village-Banner3.png";
 import bannerImage4 from "../../assets/Media/Banner/Village-Banner4.png";
+import { Helmet } from "react-helmet-async";
 
 const Gallery = () => {
   return (
     <div>
+        <Helmet>
+        <title>BGTS || Gallery</title>
+        <link rel="icon" href="gallery.png" type="image/png" />
+      </Helmet>
       <SectionTitle
       icon={<GrGallery></GrGallery>}
         heading={"Our Gallery Section"}

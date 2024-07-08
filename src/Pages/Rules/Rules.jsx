@@ -1,9 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import { FcRules } from "react-icons/fc";
 
 const Rules = () => {
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+        <Helmet>
+        <title>BGTS || Member</title>
+        <link rel="icon" href="rules.png" type="image/png" />
+      </Helmet>
       <SectionTitle
       icon={<FcRules></FcRules>}
         heading={"Rules About Bgts"}

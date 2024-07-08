@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import HomeMember from "../Member/HomeMember";
 import HomeOccasions from "../Occasion/HomeOccasions";
 import HomeProject from "../Projects/HomeProject";
@@ -8,6 +9,10 @@ import Weather from "./Weather";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>BGTS || Home</title>
+        <link rel="icon" href="house.png" type="image/png" />
+      </Helmet>
       <Banner></Banner>
       <Weather></Weather>
       <VillageGallery></VillageGallery>

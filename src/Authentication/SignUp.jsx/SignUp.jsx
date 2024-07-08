@@ -4,12 +4,17 @@ import SectionTitle from "../../Components/Shared/SectionTitle";
 import { useState } from "react";
 import registerImg from "./../../assets/Media/Images/Register.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div>
+        <Helmet>
+        <title>BGTS || Sign Up</title>
+        <link rel="icon" href="register.png" type="image/png" />
+      </Helmet>
       <SectionTitle
         heading={"Register Here"}
         subHeading={"Fill Up The Form To Join Us"}

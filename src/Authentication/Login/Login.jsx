@@ -4,12 +4,17 @@ import image from "./../../assets/Media/Images/Sign-in.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SocialLogin from "../../Components/Shared/SocialLogin";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <>
+      <Helmet>
+        <title>BGTS || Login</title>
+        <link rel="icon" href="login.png" type="image/png" />
+      </Helmet>
       <SectionTitle
         heading={"Login Here"}
         subHeading={"Use Email And Password to Join"}

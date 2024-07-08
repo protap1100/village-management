@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import ContactUsImage from "../../assets/Media/Images/contact-us.jpg";
 import { LuMessagesSquare } from "react-icons/lu";
+import { Helmet } from "react-helmet-async";
 
 const ContactUs = () => {
   const sendEmail = (e) => {
@@ -32,6 +33,10 @@ const ContactUs = () => {
 
   return (
     <div className="my-5 container mx-auto">
+        <Helmet>
+        <title>BGTS || Member</title>
+        <link rel="icon" href="contact.png" type="image/png" />
+      </Helmet>
       <SectionTitle
       icon={<LuMessagesSquare></LuMessagesSquare>}
         heading={"Message Us"}
