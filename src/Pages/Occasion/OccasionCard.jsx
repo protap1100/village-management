@@ -15,7 +15,7 @@ const OccasionCard = ({festival}) => {
           />
         </div>
         <div className="p-4 text-center lg:text-left">
-          <h1 className="text-orange-300">Start Date: {festival.startDate}</h1>
+          <h1 className="text-orange-300 flex"> Start Date: {festival.startDate}</h1>
           <h1 className="text-orange-600">Main Function: {festival.mainFunction}</h1>
           <h1 className="text-orange-400">End Date: {festival.endDate}</h1>
           <p className="lg:pr-24 pr-0 mt-2">Description :{festival.description}</p>

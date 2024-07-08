@@ -3,6 +3,7 @@ import MemberCard from "./MemberCard";
 
 const members = [
   {
+    id:1,
     name: "Natalie Paisley",
     role: "CEO / Co-Founder",
     imageUrl: "https://docs.material-tailwind.com/img/team-3.jpg",
@@ -13,6 +14,7 @@ const members = [
     contact: "natalie@example.com",
   },
   {
+    id:2,
     name: "John Doe",
     role: "CTO",
     imageUrl: "https://docs.material-tailwind.com/img/team-2.jpg",

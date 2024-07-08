@@ -47,7 +47,7 @@ const VillageGallery = () => {
       >
         <SwiperSlide>
           <div>
-            <div>
+            <div className="pl-4 lg:pl-0 text-center lg:text-left">
               <h1 className="font-bold text-xl text-green-500">
                 Date: 25 September 2022
               </h1>
@@ -69,15 +69,17 @@ const VillageGallery = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div>
-            <h1 className="font-bold text-xl text-green-500">
-              Date: 25 September 2022
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Occasions: Durga Puja
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Title: Durga Puja
-            </h1>
+            <div className="pl-4 lg:pl-0 text-center lg:text-left ">
+              <h1 className="font-bold text-xl text-green-500">
+                Date: 25 September 2022
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Occasions: Durga Puja
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Title: Durga Puja
+              </h1>
+            </div>
             <div className="flex lg:justify-start justify-center ">
               <img
                 className="mt-5 rounded h-80 w-96  hover:opacity-85 transform transition duration-500 hover:scale-105"
@@ -89,15 +91,18 @@ const VillageGallery = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div>
-            <h1 className="font-bold text-xl text-green-500">
-              Date: 25 September 2022
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Occasions: Durga Puja
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Title: Durga Puja
-            </h1>
+            <div className="pl-4 lg:pl-0 text-center lg:text-left ">
+              <h1 className="font-bold text-xl text-green-500">
+                Date: 25 September 2022
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Occasions: Durga Puja
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Title: Durga Puja
+              </h1>
+            </div>
+
             <div className="flex lg:justify-start justify-center ">
               <img
                 className="h-80 w-96 mt-5 rounded  hover:opacity-85 transform transition duration-500 hover:scale-105"
@@ -109,15 +114,17 @@ const VillageGallery = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div>
-            <h1 className="font-bold text-xl text-green-500">
-              Date: 25 September 2022
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Occasions: Durga Puja
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Title: Durga Puja
-            </h1>
+            <div className="pl-4 lg:pl-0 text-center lg:text-left ">
+              <h1 className="font-bold text-xl text-green-500">
+                Date: 25 September 2022
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Occasions: Durga Puja
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Title: Durga Puja
+              </h1>
+            </div>
             <div className="flex lg:justify-start justify-center ">
               <img
                 className="h-80 w-96 mt-5 rounded  hover:opacity-85 transform transition duration-500 hover:scale-105"
@@ -129,15 +136,17 @@ const VillageGallery = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div>
-            <h1 className="font-bold text-xl text-green-500">
-              Date: 25 September 2022
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Occasions: Durga Puja
-            </h1>
-            <h1 className="font-bold text-xl text-green-500">
-              Title: Durga Puja
-            </h1>
+            <div className="pl-4 lg:pl-0 text-center lg:text-left ">
+              <h1 className="font-bold text-xl text-green-500">
+                Date: 25 September 2022
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Occasions: Durga Puja
+              </h1>
+              <h1 className="font-bold text-xl text-green-500">
+                Title: Durga Puja
+              </h1>
+            </div>
             <div className="flex lg:justify-start justify-center ">
               <img
                 className="h-80 w-96 mt-5 rounded  hover:opacity-85 transform transition duration-500 hover:scale-105"

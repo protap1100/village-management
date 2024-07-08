@@ -11,6 +11,7 @@ import Gallery from "../Pages/Gallery/Gallery";
 import MainOccasions from "../Pages/Occasion/MainOccasions";
 import MainProject from "../Pages/Projects/MainProject";
 import Member from "../Pages/Member/Member";
+import MemberDetails from "../Pages/Member/MemberDetails";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/member",
         element: <Member></Member>,
+      },
+      {
+        path: "/memberDetails",
+        element: <MemberDetails></MemberDetails>,
       },
       {
         path: "/occasions",

@@ -37,7 +37,7 @@ const Banner = () => {
         </div>
       </div>
       <Carousel
-        className="mt-5 mx-auto cursor-pointer w-full lg:w-4/6 relative"
+        className="mt-5 mx-auto cursor-pointer w-full lg:w-5/6 relative"
         autoFocus={true}
         autoPlay={true}
         stopOnHover={true}

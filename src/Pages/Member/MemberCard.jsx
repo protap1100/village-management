@@ -1,4 +1,5 @@
-import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const MemberCard = ({ member }) => {
   return (
@@ -14,9 +15,7 @@ const MemberCard = ({ member }) => {
         <h4 className="block mb-2 font-sans text-2xl font-semibold text-blue-gray-900">
           {member.name}
         </h4>
-        <p className="block font-sans text-base bg-clip-text">
-          {member.role}
-        </p>
+        <p className="block font-sans text-base bg-clip-text">{member.role}</p>
         <p className="block font-sans text-sm bg-clip-text mt-2">
           {member.bio}
         </p>
@@ -25,20 +24,29 @@ const MemberCard = ({ member }) => {
         </p>
       </div>
       <div className="flex justify-center p-6 pt-2 gap-7">
-        <a href={member.facebook} className="block font-sans text-xl antialiased">
+        <a
+          href={member.facebook}
+          className="block font-sans text-xl antialiased"
+        >
           <FaFacebook />
         </a>
-        <a href={member.twitter} className="block font-sans text-xl antialiased">
+        <a
+          href={member.twitter}
+          className="block font-sans text-xl antialiased"
+        >
           <FaTwitter />
         </a>
-        <a href={member.instagram} className="block font-sans text-xl antialiased">
+        <a
+          href={member.instagram}
+          className="block font-sans text-xl antialiased"
+        >
           <FaInstagram />
         </a>
       </div>
-      <div className="mx-4 mt-4 lg:mx-0 lg:mt-0">
-        <h1 className="text-center p-2 bg-green-500 hover:bg-green-700 text-white cursor-pointer">
-          View Details
-        </h1>
+      <div className="mx-4 mt-4 lg:mx-0 lg:mt-0 px-4 mb-3">
+        <button className="text-center p-2 bg-green-500 w-full rounded hover:bg-green-700 text-white cursor-pointer ">
+          <Link to={`/memberDetails/${member.id}`}>View Details</Link>
+        </button>
       </div>
     </div>
   );
