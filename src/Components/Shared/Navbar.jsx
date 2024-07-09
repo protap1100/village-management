@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: "Rules", route: "/rules" },
     { name: "Contact Us", route: "/contactUs" },
     { name: "About", route: "/aboutUs" },
+    { name: "Mee", route: "user" },
   ];
   let [open, setOpen] = useState(false);
 

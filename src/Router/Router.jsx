@@ -14,6 +14,8 @@ import Member from "../Pages/Member/Member";
 import MemberDetails from "../Pages/Member/MemberDetails";
 import UserHome from "../Pages/UserDashboard/UserHome";
 import MyPosts from "../Pages/UserDashboard/MyPosts";
+import UserFees from "../Pages/UserDashboard/UserFees";
+import UserLayout from "../Pages/UserDashboard/UserLayout";
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +71,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "user",
-    element : <UserHome></UserHome>,
+    element : <UserLayout></UserLayout>,
     errorElement : <ErrorPage></ErrorPage>,
     children : [
       {
@@ -80,7 +82,10 @@ export const router = createBrowserRouter([
         path : 'user/user-posts',
         element : <MyPosts></MyPosts>
       },
-      {}
+      {
+        path : 'user/monthly-fees',
+        element : <UserFees></UserFees>
+      }
     ]
   }
 ]);
