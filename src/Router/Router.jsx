@@ -12,6 +12,8 @@ import MainOccasions from "../Pages/Occasion/MainOccasions";
 import MainProject from "../Pages/Projects/MainProject";
 import Member from "../Pages/Member/Member";
 import MemberDetails from "../Pages/Member/MemberDetails";
+import UserHome from "../Pages/UserDashboard/UserHome";
+import MyPosts from "../Pages/UserDashboard/MyPosts";
 
 export const router = createBrowserRouter([
   {
@@ -65,4 +67,20 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "user",
+    element : <UserHome></UserHome>,
+    errorElement : <ErrorPage></ErrorPage>,
+    children : [
+      {
+        path : 'user/user-Home',
+        element : <UserHome></UserHome>
+      },
+      {
+        path : 'user/user-posts',
+        element : <MyPosts></MyPosts>
+      },
+      {}
+    ]
+  }
 ]);

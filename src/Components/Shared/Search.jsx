@@ -12,7 +12,7 @@ const Search = ({ name }) => {
           placeholder={`Search For ${name}`}
           className="lg:w-1/6 w-full  rounded border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280]  focus:border-[#6A64F1]"
         />
-        <button className="py-2 px-4 bg-blue-500 hover:bg-blue-400 text-white rounded font-bold">
+        <button className="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded font-bold">
           Search
         </button>
       </div>

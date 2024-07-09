@@ -6,7 +6,9 @@ const HomeOccasions = () => {
     return (
         <div>
             <Occasions search={<Search name="Occasions"></Search>} ></Occasions>
-            <Button route="/occasions" name={"Occasions"}></Button>
+           <div className="mt-5">
+           <Button route="/occasions" name={"Occasions"}></Button>
+           </div>
         </div>
     );
 };
