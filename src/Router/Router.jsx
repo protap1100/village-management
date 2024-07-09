@@ -16,6 +16,13 @@ import UserHome from "../Pages/UserDashboard/UserHome";
 import MyPosts from "../Pages/UserDashboard/MyPosts";
 import UserFees from "../Pages/UserDashboard/UserFees";
 import UserLayout from "../Pages/UserDashboard/UserLayout";
+import AdminLayout from "../Pages/Dashboard/AdminLayout";
+import AllUsers from "../Pages/Dashboard/AllUsers";
+import AllMember from "../Pages/Dashboard/ManageMember.jsx/AllMember";
+import AllOccasions from "../Pages/Dashboard/ManageOccaions/AllOccasions";
+import AllProjects from "../Pages/Dashboard/ManageProjects/AllProjects";
+import AllPosts from "../Pages/Dashboard/ManagePosts/AllPosts";
+import AdminHome from "../Pages/Dashboard/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +31,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        index : true,
+        index: true,
         element: <Home></Home>,
       },
       {
@@ -48,8 +55,8 @@ export const router = createBrowserRouter([
         element: <Gallery></Gallery>,
       },
       {
-        path:'/contactUs',
-        element : <ContactUs></ContactUs>
+        path: "/contactUs",
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/aboutUs",
@@ -71,21 +78,52 @@ export const router = createBrowserRouter([
   },
   {
     path: "user",
-    element : <UserLayout></UserLayout>,
-    errorElement : <ErrorPage></ErrorPage>,
-    children : [
+    element: <UserLayout></UserLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
       {
-        path : 'user/user-Home',
-        element : <UserHome></UserHome>
+        path: "user-Home",
+        element: <UserHome></UserHome>,
       },
       {
-        path : 'user/user-posts',
-        element : <MyPosts></MyPosts>
+        path: "user-posts",
+        element: <MyPosts></MyPosts>,
       },
       {
-        path : 'user/monthly-fees',
-        element : <UserFees></UserFees>
-      }
-    ]
-  }
+        path: "monthly-fees",
+        element: <UserFees></UserFees>,
+      },
+    ],
+  },
+  {
+    path: "admin",
+    element: <AdminLayout></AdminLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "admin-home",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "admin-user",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "all-members",
+        element: <AllMember></AllMember>,
+      },
+      {
+        path: "all-occasions",
+        element: <AllOccasions></AllOccasions>,
+      },
+      {
+        path: "all-projects",
+        element: <AllProjects></AllProjects>,
+      },
+      {
+        path: "all-posts",
+        element: <AllPosts></AllPosts>,
+      },
+    ],
+  },
 ]);

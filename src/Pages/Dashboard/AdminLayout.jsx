@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
-import UserNavbar from "./UserNavbar";
+import AdminNavbar from "./AdminNavbar";
 
-const UserLayout = () => {
+const AdminLayout = () => {
     return (
         <div className="flex">
-            <UserNavbar></UserNavbar>
+            <AdminNavbar></AdminNavbar>
             <Outlet></Outlet>
         </div>
     );
 };
 
-export default UserLayout;
+export default AdminLayout;
