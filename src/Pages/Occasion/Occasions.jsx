@@ -14,7 +14,6 @@ const festivals = [
     organizer: "Bgts Committe",
     eventHighlights:
       "Grand procession, traditional dances, and music performances.",
-    sponsors: ["Company A", "Company B", "Company C"],
     volunteers: ["John Doe", "Jane Smith", "Bob Johnson"],
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est molestias ullam perspiciatis. Eos corrupti ex enim, eveniet cumque expedita repudiandae.",

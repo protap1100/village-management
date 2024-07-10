@@ -17,12 +17,14 @@ import MyPosts from "../Pages/UserDashboard/MyPosts";
 import UserFees from "../Pages/UserDashboard/UserFees";
 import UserLayout from "../Pages/UserDashboard/UserLayout";
 import AdminLayout from "../Pages/Dashboard/AdminLayout";
-import AllUsers from "../Pages/Dashboard/AllUsers";
 import AllMember from "../Pages/Dashboard/ManageMember.jsx/AllMember";
 import AllOccasions from "../Pages/Dashboard/ManageOccaions/AllOccasions";
 import AllProjects from "../Pages/Dashboard/ManageProjects/AllProjects";
 import AllPosts from "../Pages/Dashboard/ManagePosts/AllPosts";
 import AdminHome from "../Pages/Dashboard/AdminHome";
+import FeedBack from "../Pages/Dashboard/FeedBack";
+import AllUsers from "../Pages/Dashboard/ManageUsers/AllUsers";
+import AddOccasions from "../Pages/Dashboard/ManageOccaions/AddOccasions";
 
 export const router = createBrowserRouter([
   {
@@ -121,9 +123,17 @@ export const router = createBrowserRouter([
         element: <AllProjects></AllProjects>,
       },
       {
+        path: "feedback",
+        element: <FeedBack></FeedBack>,
+      },
+      {
         path: "all-posts",
         element: <AllPosts></AllPosts>,
       },
+      {
+        path: 'add-occasions',
+        element : <AddOccasions></AddOccasions>
+      }
     ],
   },
 ]);
