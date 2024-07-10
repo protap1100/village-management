@@ -1,62 +1,61 @@
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 
-const AddOccasions = () => {
+const AddProjects = () => {
   return (
     <div>
       <SectionTitle
-        heading={"Add Occasions"}
-        subHeading={"Add Upcoming Occasions"}
+        heading={"Add Projects"}
+        subHeading={"Add Upcoming Projects"}
       ></SectionTitle>
       <div>
         <form className="card-body">
           <div className="flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Name
+                Project Name
               </label>
               <input
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Enter Occasions Name"
+                placeholder="Enter Project Name"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Location or Venue
+                Purpose
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
-                placeholder="Enter Location or Venue"
+                name="purpose"
+                id="purpose"
+                placeholder="Enter Project Purpose"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
           </div>
           <div className="flex gap-5">
+            <div className="mb-5 flex-1">
+              <label className="mb-3 block text-base font-medium text-[#07074D]">
+                Budget
+              </label>
+              <input
+                type="text"
+                name="budget"
+                id="budget"
+                placeholder="Enter Budget"
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Start Date
               </label>
               <input
                 type="date"
-                name="name"
-                id="name"
-                placeholder="Enter Start Date"
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-            </div>
-            <div className="mb-5 flex-1">
-              <label className="mb-3 block text-base font-medium text-[#07074D]">
-                End Date
-              </label>
-              <input
-                type="date"
-                name="name"
-                id="name"
-                placeholder="Enter End Date"
+                name="startDate"
+                id="startDate"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -64,25 +63,24 @@ const AddOccasions = () => {
           <div className="flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Activities
+                End Date
               </label>
               <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter activities"
+                type="date"
+                name="endDate"
+                id="endDate"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                ContactInfo
+                Location
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
-                placeholder="Enter Contact Info"
+                name="location"
+                id="location"
+                placeholder="Enter Location"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
@@ -94,62 +92,58 @@ const AddOccasions = () => {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="organizer"
+                id="organizer"
                 placeholder="Enter Organizer"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Event Highlights
+                Status
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
-                placeholder="Enter Event Highlights"
+                name="status"
+                id="status"
+                placeholder="Enter Status"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
           </div>
           <div className="flex gap-5">
-            <div className="mb-5 w-full">
+            <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Description
+                Contact Info
               </label>
-              <textarea
+              <input
                 type="text"
-                name="name"
-                id="name"
-                placeholder="Enter Description"
+                name="contactInfo"
+                id="contactInfo"
+                placeholder="Enter Contact Info"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
-          </div>
-          <div className="flex gap-5">
-            <div className="mb-5 w-full">
+            <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Photo
+                Image URL
               </label>
               <input
-                type="file"
-                name="name"
-                id="name"
-                placeholder="Enter Photo"
+                type="text"
+                name="imageUrl"
+                id="imageUrl"
+                placeholder="Enter Image URL"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
             </div>
           </div>
           <div className="form-control mt-6">
-            <div>
-              <button
-                type="submit"
-                className="hover:shadow-form rounded-md w-full bg-[#6A64F1] py-3 px-8 text-base font-semibold hover:bg-blue-400 transition duration-700 text-white outline-none"
-              >
-                Add Occasions
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold hover:bg-blue-400 transition duration-700 text-white outline-none"
+            >
+              Add Project
+            </button>
           </div>
         </form>
       </div>
@@ -157,4 +151,4 @@ const AddOccasions = () => {
   );
 };
 
-export default AddOccasions;
+export default AddProjects;

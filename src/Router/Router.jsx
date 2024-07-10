@@ -25,6 +25,7 @@ import AdminHome from "../Pages/Dashboard/AdminHome";
 import FeedBack from "../Pages/Dashboard/FeedBack";
 import AllUsers from "../Pages/Dashboard/ManageUsers/AllUsers";
 import AddOccasions from "../Pages/Dashboard/ManageOccaions/AddOccasions";
+import AddProjects from "../Pages/Dashboard/ManageProjects/AddProjects";
 
 export const router = createBrowserRouter([
   {
@@ -133,6 +134,10 @@ export const router = createBrowserRouter([
       {
         path: 'add-occasions',
         element : <AddOccasions></AddOccasions>
+      },
+      {
+        path : "add-projects",
+        element : <AddProjects></AddProjects>
       }
     ],
   },
