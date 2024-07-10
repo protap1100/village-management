@@ -1,9 +1,14 @@
+import SectionTitle from "../../../Components/Shared/SectionTitle";
+
 const AllMember = () => {
-    return (
-        <div>
-            <h1>All Member</h1>
-        </div>
-    );
+  return (
+    <div>
+      <SectionTitle
+        heading={"BGTS Member"}
+        subHeading={"All Registered Member of BGTS"}
+      ></SectionTitle>
+    </div>
+  );
 };
 
 export default AllMember;
