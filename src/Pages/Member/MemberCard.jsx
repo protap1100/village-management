@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 
 const MemberCard = ({ member }) => {
   return (
@@ -29,18 +29,6 @@ const MemberCard = ({ member }) => {
           className="block font-sans text-xl antialiased"
         >
           <FaFacebook />
-        </a>
-        <a
-          href={member.twitter}
-          className="block font-sans text-xl antialiased"
-        >
-          <FaTwitter />
-        </a>
-        <a
-          href={member.instagram}
-          className="block font-sans text-xl antialiased"
-        >
-          <FaInstagram />
         </a>
       </div>
       <div className="mx-4 mt-4 lg:mx-0 lg:mt-0 px-4 mb-3">

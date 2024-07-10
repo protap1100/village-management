@@ -7,6 +7,9 @@ const AllMember = () => {
         heading={"BGTS Member"}
         subHeading={"All Registered Member of BGTS"}
       ></SectionTitle>
+      <div>
+        
+      </div>
     </div>
   );
 };

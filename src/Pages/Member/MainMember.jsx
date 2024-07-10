@@ -9,10 +9,9 @@ const members = [
     role: "CEO / Co-Founder",
     imageUrl: "https://docs.material-tailwind.com/img/team-3.jpg",
     facebook: "#facebook",
-    twitter: "#twitter",
-    instagram: "#instagram",
     bio: "Experienced leader with a passion for innovation and excellence.",
     contact: "natalie@example.com",
+    nid : 938403085349,
   },
   {
     id: 2,
@@ -20,12 +19,10 @@ const members = [
     role: "CTO",
     imageUrl: "https://docs.material-tailwind.com/img/team-2.jpg",
     facebook: "#facebook",
-    twitter: "#twitter",
-    instagram: "#instagram",
     bio: "Tech enthusiast with a background in software development and engineering.",
     contact: "john@example.com",
+    nid : 938403085349,
   },
-  // Add more member objects here
 ];
 
 const MainMember = ({ search }) => {
