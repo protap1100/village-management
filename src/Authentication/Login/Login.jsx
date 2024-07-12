@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,8 +34,13 @@ const Login = () => {
         });
         navigate(location?.state ? location.state : "/");
       })
-      .catch(() => {
-        toast.error("Wrong Password or Email. Please try again.");
+      .catch((error) => {
+        const message =
+          error.code === "auth/user-not-found" || error.code === "auth/wrong-password"
+            ? "Wrong Password or Email. Please try again."
+            : "Wrong Password or Email. Please try again.";
+        setErrorMessage(message);
+        toast.error(message);
       });
   };
 
@@ -101,6 +107,9 @@ const Login = () => {
                 Forgot password?
               </a>
             </label>
+            {errorMessage && (
+              <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+            )}
             <div className="form-control mt-6">
               <button
                 type="submit"
