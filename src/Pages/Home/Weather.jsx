@@ -34,7 +34,7 @@ const Weather = () => {
         if (response.ok) {
           setWeather(data);
           setLoading(false);
-          console.log(data);
+          // console.log(data);
         } else {
           throw new Error(data.message);
         }

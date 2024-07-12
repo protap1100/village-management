@@ -1,11 +1,14 @@
 import { useState } from "react";
-import {
-  Bars3BottomRightIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/solid";
-import { Link, NavLink } from "react-router-dom";
+import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { GiHamburgerMenu } from "react-icons/gi";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user,logOut } = useAuth();
+  console.log(user);
+  const navigate = useNavigate()
   const Links = [
     { name: "Home", route: "/" },
     { name: "Member", route: "/member" },
@@ -15,16 +18,29 @@ const Navbar = () => {
     { name: "Rules", route: "/rules" },
     { name: "Contact Us", route: "/contactUs" },
     { name: "About", route: "/aboutUs" },
-    { name: "Mee", route: "user" },
+    // { name: "Mee", route: "user" },
     { name: "Admin", route: "admin/admin-home" },
   ];
   let [open, setOpen] = useState(false);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Logout Successful",
+          text: "You Have Successfully Logged Out",
+          icon: "success",
+        });
+        navigate(location?.state ? location.state : "/");
+      })
+      .then((error) => console.log(error));
+  };
 
   return (
     <div className="shadow-md w-full fixed z-50">
       <div className="md:flex items-center justify-between bg-white py-3 md:px-10 px-7">
         <div className="font-bold text-2xl cursor-pointer flex items-center gap-1">
-        <Link to='/'> BGTS</Link>
+          <Link to="/"> BGTS</Link>
         </div>
         <div
           onClick={() => setOpen(!open)}
@@ -38,7 +54,10 @@ const Navbar = () => {
           }`}
         >
           {Links.map((link, index) => (
-            <li key={index} className="md:ml-8 md:my-0 my-7 font-semibold hover:text-blue-200">
+            <li
+              key={index}
+              className="md:ml-8 md:my-0 my-7 font-semibold hover:text-blue-200"
+            >
               <NavLink
                 to={link.route}
                 key={index}
@@ -50,9 +69,31 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          <button className=" bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static hover:bg-blue-400">
-           <Link to='/login'>Login</Link>
-          </button>
+          {user?.displayName ? (
+            <div className="dropdown dropdown-end ml-3 mt-1 text-xl flex items-center">
+              <div tabIndex={0} role="button" className="">
+                <GiHamburgerMenu></GiHamburgerMenu>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu mt-10 bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+              >
+                <li>
+                  <Link>Update Profile</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogout}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link
+              className=" bg-blue-600 text-white md:ml-8 font-semibold px-3 py-1 rounded duration-500 md:static hover:bg-blue-400"
+              to="/login"
+            >
+              Login
+            </Link>
+          )}
         </ul>
       </div>
     </div>

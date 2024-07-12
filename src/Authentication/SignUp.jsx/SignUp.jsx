@@ -1,17 +1,86 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../../Components/Shared/SocialLogin";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import { useState } from "react";
 import registerImg from "./../../assets/Media/Images/Register.jpg";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import useAuth from "../../Hooks/useAuth";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+  const { createUser, updateUserProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const { name, email, password, photoUrl } = data;
+    console.log(name, email, photoUrl, password);
+
+    if (!/(?=.*[a-z])/.test(password)) {
+      toast.error("Password must contain at least one lowercase letter", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    } else if (!/(?=.*[A-Z])/.test(password)) {
+      toast.error("Password must contain at least one uppercase letter", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    } else if (password.length < 6) {
+      toast.error("Password must be 6 characters or higher", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    } else {
+      createUser(email, password)
+        .then((result) => {
+          console.log(result.user, "user");
+          updateUserProfile(name, photoUrl)
+            .then(() => {
+              toast.success("User registered successfully!");
+              reset();
+              navigate("/");
+            })
+            .catch((error) => console.log(error));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   return (
     <div>
-        <Helmet>
+      <Helmet>
         <title>BGTS || Sign Up</title>
         <link rel="icon" href="register.png" type="image/png" />
       </Helmet>
@@ -24,7 +93,7 @@ const SignUp = () => {
           <img className="rounded" src={registerImg} alt="" />
         </div>
         <div className="flex-1">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
             <div className="mb-5">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Full Name
@@ -35,7 +104,9 @@ const SignUp = () => {
                 id="name"
                 placeholder="Full Name"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                {...register("name", { required: "Name is required" })}
               />
+              {errors.name && <p className="text-red-600">{errors.name.message}</p>}
             </div>
             <div className="mb-5">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -44,10 +115,18 @@ const SignUp = () => {
               <input
                 type="text"
                 name="email"
-                id="name"
+                id="email"
                 placeholder="Email"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                    message: "Invalid email address",
+                  },
+                })}
               />
+              {errors.email && <p className="text-red-600">{errors.email.message}</p>}
             </div>
             <div className="mb-5">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -55,10 +134,11 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
+                name="photoUrl"
+                id="photoUrl"
                 placeholder="Photo Url"
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                {...register("photoUrl")}
               />
             </div>
             <div>
@@ -68,15 +148,14 @@ const SignUp = () => {
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
+                  name="password"
                   placeholder="Password"
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                  required
+                  {...register("password", { required: "Password is required" })}
                 />
                 <span
                   className="absolute animate__animated animate__fadeInDown inset-y-0 right-0 pr-3 flex items-center"
-                  onClick={() => {
-                    setShowPassword(!showPassword);
-                  }}
+                  onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
                     <FaEye className="text-gray-800 text-2xl cursor-pointer" />
@@ -84,6 +163,7 @@ const SignUp = () => {
                     <FaEyeSlash className="text-gray-800 text-2xl cursor-pointer" />
                   )}
                 </span>
+                {errors.password && <p className="text-red-600">{errors.password.message}</p>}
               </div>
             </div>
             <label className="label">
@@ -92,7 +172,7 @@ const SignUp = () => {
               </a>
             </label>
             <div className="form-control mt-6">
-            <div>
+              <div>
                 <button
                   type="submit"
                   className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold hover:bg-blue-400 transition duration-700 text-white outline-none"
@@ -106,7 +186,7 @@ const SignUp = () => {
             </div>
           </form>
           <div className="text-center">
-            Already Have An Account
+            Already Have An Account?
             <Link className="font-bold ml-2 text-green-500" to="/login">
               Join Us
             </Link>
