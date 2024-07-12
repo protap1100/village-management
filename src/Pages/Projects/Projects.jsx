@@ -42,6 +42,7 @@ const projects = [
 ];
 
 const Projects = ({ search }) => {
+
   return (
     <div>
       <SectionTitle

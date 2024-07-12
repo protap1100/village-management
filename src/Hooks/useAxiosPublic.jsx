@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic =axios.create({
-    baseURL:'https://meal-buddy-server.vercel.app'
+    baseURL:import.meta.env.VITE_URL
 })
 
 const useAxiosPublic = () => {
