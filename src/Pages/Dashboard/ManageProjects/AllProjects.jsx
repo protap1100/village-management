@@ -2,9 +2,43 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import { Link } from "react-router-dom";
 import useProjects from "../../../Hooks/useProjects";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Loading from "../../../Others/Loading";
 
 const AllProjects = () => {
   const [projects, loading, refetch] = useProjects();
+  const axiosPublic = useAxiosPublic();
+
+  const handleDelete = (project) => {
+    Swal.fire({
+      title: `Delete ${project.name}`,
+      text: "Do You Want to Delete this Item",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/projects/${project._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            console.log(res.data)
+            Swal.fire({
+              title: "Deleted!",
+              text: `${project.name} Has Deleted Successfully`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div>
@@ -37,12 +71,12 @@ const AllProjects = () => {
             </tr>
           </thead>
           <tbody>
-            {projects.map((project) => (
+            {projects.map((project,index) => (
               <tr
-                key={project.id}
+                key={project._id}
                 className="hover:bg-gray-100 transition-colors duration-200"
               >
-                <td className="py-3 px-4 border-b text-center">{project.id}</td>
+                <td className="py-3 px-4 border-b text-center">{index + 1}</td>
                 <td className="py-3 px-4 border-b text-center">
                   {project.name}
                 </td>
@@ -71,7 +105,10 @@ const AllProjects = () => {
                   {project.contactInfo}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
-                  <div className="flex justify-center">
+                  <div
+                    onClick={() => handleDelete(project)}
+                    className="flex justify-center"
+                  >
                     <FaTrashAlt className="text-red-500 cursor-pointer" />
                   </div>
                 </td>
