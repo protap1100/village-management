@@ -1,42 +1,43 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
+import useOccasions from "../../../Hooks/useOccasions";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Loading from "../../../Others/Loading";
 
 const AllOccasions = () => {
-  const occasions = [
-    {
-      id: "1",
-      name: "Durga Puja",
-      startDate: "2023-01-15",
-      endDate: "2023-01-19",
-      location: "Dhaka, Bangladesh",
-      description: "A major festival in Dhaka",
-    },
-    {
-      id: "2",
-      name: "Eid-ul-Fitr",
-      startDate: "2023-04-20",
-      endDate: "2023-04-22",
-      location: "Chittagong, Bangladesh",
-      description: "A festival celebrated by Muslims",
-    },
-    {
-      id: "3",
-      name: "Pohela Boishakh",
-      startDate: "2023-04-14",
-      endDate: "2023-04-14",
-      location: "Dhaka, Bangladesh",
-      description: "Bengali New Year festival",
-    },
-    {
-      id: "4",
-      name: "Christmas",
-      startDate: "2023-12-25",
-      endDate: "2023-12-25",
-      location: "Dhaka, Bangladesh",
-      description: "Christian holiday celebrating the birth of Jesus",
-    },
-  ];
+  const [occasions, loading, refetch] = useOccasions();
+  const axiosPublic = useAxiosPublic();
+
+  const handleDelete = (occasion) => {
+    Swal.fire({
+      title: `Delete ${occasion.name}`,
+      text: "Do you want to delete this item?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/occasions/${occasion._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: `${occasion.name} has been deleted successfully`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div>
@@ -45,7 +46,10 @@ const AllOccasions = () => {
         subHeading={"Here is the information of all your occasions"}
       />
       <div className="overflow-x-auto px-3 mt-5">
-        <Link to='/admin/add-occasions' className="inline-block p-2 bg-green-500 hover:bg-green-600 font-bold text-white rounded">
+        <Link
+          to="/admin/add-occasions"
+          className="inline-block p-2 bg-green-500 hover:bg-green-600 font-bold text-white rounded"
+        >
           Add Occasions
         </Link>
         <table className="min-w-full mt-5 bg-white shadow-md rounded-lg overflow-hidden">
@@ -62,13 +66,13 @@ const AllOccasions = () => {
             </tr>
           </thead>
           <tbody>
-            {occasions.map((occasion) => (
+            {occasions.map((occasion, index) => (
               <tr
-                key={occasion.id}
+                key={occasion._id}
                 className="hover:bg-gray-100 transition-colors duration-200"
               >
                 <td className="py-3 px-4 border-b text-center">
-                  {occasion.id}
+                  {index + 1}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
                   {occasion.name}
@@ -86,7 +90,10 @@ const AllOccasions = () => {
                   {occasion.description}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
-                  <div className="flex justify-center">
+                  <div
+                    onClick={() => handleDelete(occasion)}
+                    className="flex justify-center"
+                  >
                     <FaTrashAlt className="text-red-500 cursor-pointer" />
                   </div>
                 </td>

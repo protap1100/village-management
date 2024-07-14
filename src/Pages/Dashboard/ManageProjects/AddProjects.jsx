@@ -50,7 +50,7 @@ const AddProjects = () => {
         organizer: data.organizer,
         status: data.status,
         contactInfo: data.contactInfo,
-        imageUrl: data.imageUrl,
+        image: data.image,
         addedBy: user.displayName,
         email: user.email,
         createdAt: createdAt,

@@ -14,7 +14,7 @@ const OccasionCard = ({ festival }) => {
       </div>
       <div className="mt-2">
         <img
-          src={festival.imageUrl}
+          src={festival.image}
           alt={festival.name}
           className="w-full h-48 object-cover rounded"
         />
@@ -23,10 +23,10 @@ const OccasionCard = ({ festival }) => {
         <h1 className="text-orange-300 flex items-center gap-1">
           <MdOutlineDateRange /> Start Date: {festival.startDate}
         </h1>
-        <h1 className="text-orange-500 flex items-center gap-1">
+        {/* <h1 className="text-orange-500 flex items-center gap-1">
           <MdOutlineDateRange />
           Main Function: {festival.mainFunction}
-        </h1>
+        </h1> */}
         <h1 className="text-orange-300 flex items-center gap-1">
           <MdOutlineDateRange />
           End Date: {festival.endDate}
