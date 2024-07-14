@@ -1,36 +1,10 @@
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import { Link } from "react-router-dom";
+import useProjects from "../../../Hooks/useProjects";
 
 const AllProjects = () => {
-  const projects = [
-    {
-      id: 1,
-      name: "Light Up Village",
-      purpose: "Light Up The Whole Village",
-      budget: "50000 BDT",
-      startDate: "01 January 2024",
-      endDate: "31 December 2024",
-      location: "Dhaka, Bangladesh",
-      organizer: "Village Council",
-      status: "Ongoing",
-      contactInfo: "Contact: 0123456789, Email: info@village.com",
-      imageUrl: "https://docs.material-tailwind.com/img/team-3.jpg",
-    },
-    {
-      id: 2,
-      name: "Clean Water Project",
-      purpose: "Provide Clean Drinking Water",
-      budget: "75000 BDT",
-      startDate: "01 March 2024",
-      endDate: "30 June 2024",
-      location: "Dhaka, Bangladesh",
-      organizer: "Health and Safety Committee",
-      status: "Upcoming",
-      contactInfo: "Contact: 0987654321, Email: health@village.com",
-      imageUrl: "https://docs.material-tailwind.com/img/team-2.jpg",
-    },
-  ];
+  const [projects, loading, refetch] = useProjects();
 
   return (
     <div>
@@ -69,15 +43,33 @@ const AllProjects = () => {
                 className="hover:bg-gray-100 transition-colors duration-200"
               >
                 <td className="py-3 px-4 border-b text-center">{project.id}</td>
-                <td className="py-3 px-4 border-b text-center">{project.name}</td>
-                <td className="py-3 px-4 border-b text-center">{project.purpose}</td>
-                <td className="py-3 px-4 border-b text-center">{project.budget}</td>
-                <td className="py-3 px-4 border-b text-center">{project.startDate}</td>
-                <td className="py-3 px-4 border-b text-center">{project.endDate}</td>
-                <td className="py-3 px-4 border-b text-center">{project.location}</td>
-                <td className="py-3 px-4 border-b text-center">{project.organizer}</td>
-                <td className="py-3 px-4 border-b text-center">{project.status}</td>
-                <td className="py-3 px-4 border-b text-center">{project.contactInfo}</td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.name}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.purpose}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.budget}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.startDate}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.endDate}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.location}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.organizer}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.status}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {project.contactInfo}
+                </td>
                 <td className="py-3 px-4 border-b text-center">
                   <div className="flex justify-center">
                     <FaTrashAlt className="text-red-500 cursor-pointer" />
