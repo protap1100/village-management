@@ -70,16 +70,16 @@ const Navbar = () => {
             </li>
           ))}
           {user?.displayName ? (
-            <div className="dropdown dropdown-end ml-3 mt-1 text-xl flex items-center">
-              <div tabIndex={0} role="button" className="">
+            <div className="dropdown lg:dropdown-end dropdown-start ml-6 mt-1 text-xl flex items-start lg:items-center justify-start">
+              <div tabIndex={0} role="button" className=" lg:-ml-0 -ml-6">
                 <GiHamburgerMenu></GiHamburgerMenu>
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu mt-10 bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                className="dropdown-content menu mt-0 lg:mt-10  bg-base-100 rounded z-[1] w-32 p-2 shadow"
               >
                 <li>
-                  <Link>Update Profile</Link>
+                  <Link to="/about-me">About Me</Link>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Logout</button>

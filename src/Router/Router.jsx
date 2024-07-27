@@ -27,6 +27,8 @@ import AllUsers from "../Pages/Dashboard/ManageUsers/AllUsers";
 import AddOccasions from "../Pages/Dashboard/ManageOccaions/AddOccasions";
 import AddProjects from "../Pages/Dashboard/ManageProjects/AddProjects";
 import AddMember from "../Pages/Dashboard/ManageMember.jsx/AddMember";
+import AboutMe from "../Pages/Profile/AboutMe";
+import PrivateRouter from "./PrivateRouter";
 
 export const router = createBrowserRouter([
   {
@@ -40,7 +42,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/member",
-        element: <Member></Member>,
+        element: (
+          <PrivateRouter>
+            <Member></Member>
+          </PrivateRouter>
+        ),
       },
       {
         path: "/memberDetails",
@@ -77,6 +83,14 @@ export const router = createBrowserRouter([
       {
         path: "/signUp",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/about-me",
+        element: (
+          <PrivateRouter>
+            <AboutMe></AboutMe>
+          </PrivateRouter>
+        ),
       },
     ],
   },
@@ -133,16 +147,17 @@ export const router = createBrowserRouter([
         element: <AllPosts></AllPosts>,
       },
       {
-        path: 'add-occasions',
-        element : <AddOccasions></AddOccasions>
+        path: "add-occasions",
+        element: <AddOccasions></AddOccasions>,
       },
       {
-        path : "add-projects",
-        element : <AddProjects></AddProjects>
-      },{
-        path:"add-member",
-        element : <AddMember></AddMember>
-      }
+        path: "add-projects",
+        element: <AddProjects></AddProjects>,
+      },
+      {
+        path: "add-member",
+        element: <AddMember></AddMember>,
+      },
     ],
   },
 ]);

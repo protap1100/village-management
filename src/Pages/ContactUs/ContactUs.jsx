@@ -97,17 +97,17 @@ const ContactUs = () => {
         subHeading={"We Are Looking Forward to Your Messages"}
       />
       <section className="py-6 mt-5 bg-gray-200 dark:text-gray-900 rounded-xl">
-        <div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
+        <div className="grid w-full lg:max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
           <div className="flex items-center justify-center p-12">
             <img src={ContactUsImage} alt="Contact Us" />
           </div>
-          <div className="flex items-center justify-center p-12">
-            <div className="mx-auto w-full max-w-[550px]">
+          <div className="flex items-center justify-center p-4 lg:p-12">
+            <div className="mx-auto w-full">
               <form onSubmit={handleSubmit(sendEmail)}>
                 <div className="mb-5">
                   <label
                     htmlFor="name"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 block text-base lg:text-left text-center font-medium text-[#07074D]"
                   >
                     Full Name
                   </label>
@@ -125,7 +125,7 @@ const ContactUs = () => {
                 <div className="mb-5">
                   <label
                     htmlFor="email"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 lg:text-left text-center block text-base font-medium text-[#07074D]"
                   >
                     Email Address
                   </label>
@@ -146,7 +146,7 @@ const ContactUs = () => {
                 <div className="mb-5">
                   <label
                     htmlFor="subject"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 lg:text-left text-center block text-base font-medium text-[#07074D]"
                   >
                     Subject
                   </label>
@@ -166,7 +166,7 @@ const ContactUs = () => {
                 <div className="mb-5">
                   <label
                     htmlFor="message"
-                    className="mb-3 block text-base font-medium text-[#07074D]"
+                    className="mb-3 lg:text-left text-center block text-base font-medium text-[#07074D]"
                   >
                     Message
                   </label>
@@ -182,7 +182,7 @@ const ContactUs = () => {
                     <p className="text-red-500">{errors.message.message}</p>
                   )}
                 </div>
-                <div>
+                <div className="lg:text-left text-center">
                   <button
                     type="submit"
                     className="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold hover:bg-blue-400 transition duration-700 text-white outline-none"
