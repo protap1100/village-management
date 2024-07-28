@@ -12,7 +12,7 @@ const Gallery = () => {
   if (loading) {
     return <Loading></Loading>;
   }
-  console.log(posts)
+  // console.log(posts);
   return (
     <div>
       <Helmet>
@@ -24,8 +24,7 @@ const Gallery = () => {
         heading={"Our Gallery Section"}
         subHeading={"Beautiful Photos Of Our Villages"}
       ></SectionTitle>
-      <Post></Post>
-
+      <Post refetch={refetch}></Post>
       <section>
         <div>
           <h1 className="text-center my-5 font-semibold">Post By Other User</h1>

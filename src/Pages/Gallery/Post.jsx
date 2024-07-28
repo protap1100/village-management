@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const Post = () => {
+const Post = ({ refetch }) => {
   const { user } = useAuth();
   const {
     register,
@@ -40,6 +40,7 @@ const Post = () => {
       const postRes = await axiosPublic.post("/post", postData);
 
       if (postRes.data.insertedId) {
+        refetch();
         reset();
         Swal.fire({
           position: "top-center",

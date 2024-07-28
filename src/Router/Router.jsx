@@ -29,6 +29,7 @@ import AddProjects from "../Pages/Dashboard/ManageProjects/AddProjects";
 import AddMember from "../Pages/Dashboard/ManageMember.jsx/AddMember";
 import AboutMe from "../Pages/Profile/AboutMe";
 import PrivateRouter from "./PrivateRouter";
+import PostDetails from "../Pages/Gallery/PostDetails";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/gallery",
         element: <Gallery></Gallery>,
+      },
+      {
+        path: "/post-details/:id",
+        element: <PostDetails></PostDetails>,
       },
       {
         path: "/contactUs",

@@ -5,6 +5,7 @@ import HomeProject from "../Projects/HomeProject";
 import Banner from "./Banner";
 import VillageGallery from "./VillageGallery";
 import Weather from "./Weather";
+import Gallery from "../Gallery/Gallery";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       </Helmet>
       <Banner></Banner>
       <Weather></Weather>
+      <Gallery></Gallery>
       <VillageGallery></VillageGallery>
       <HomeMember></HomeMember>
       <HomeOccasions></HomeOccasions>
