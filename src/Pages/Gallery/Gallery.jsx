@@ -12,7 +12,6 @@ const Gallery = () => {
   if (loading) {
     return <Loading></Loading>;
   }
-  // console.log(posts);
   return (
     <div>
       <Helmet>

@@ -4,8 +4,8 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Loading from "../../Others/Loading";
 
 const PostDetails = () => {
-  const {id} = useParams();
-  console.log(id)
+  const { id } = useParams();
+  console.log(id);
   const axiosPublic = useAxiosPublic();
   const { data: post = {}, isloading: loading } = useQuery({
     queryKey: ["post", id],
@@ -14,13 +14,13 @@ const PostDetails = () => {
       return res.data;
     },
   });
-  console.log(post)
+  console.log(post);
 
   if (loading) {
     return <Loading></Loading>;
   }
 
-  return <div></div>;
+  return <div>{post._id}</div>;
 };
 
 export default PostDetails;
