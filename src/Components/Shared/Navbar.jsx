@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user,logOut } = useAuth();
-  console.log(user);
+  // console.log(user);
   const navigate = useNavigate()
   const Links = [
     { name: "Home", route: "/" },

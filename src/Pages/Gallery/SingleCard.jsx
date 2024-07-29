@@ -3,13 +3,17 @@ import { FaCommentAlt, FaHeart, FaShare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useUser from "../../Hooks/useUser";
+import Loading from "../../Others/Loading";
+import Swal from "sweetalert2";
 
-const SingleCard = ({ post }) => {
+const SingleCard = ({ post, refetch }) => {
   const { _id, image, caption, added_by, added_on, likes, comment } = post;
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const addedDate = moment(added_on);
   const now = moment();
+  const [users, userLoading] = useUser();
   const minutesAgo = now.diff(addedDate, "minutes");
   const hoursAgo = now.diff(addedDate, "hours");
   const daysAgo = now.diff(addedDate, "days");
@@ -27,13 +31,32 @@ const SingleCard = ({ post }) => {
     timeAgo = `${yearsAgo}yr${yearsAgo !== 1 ? "" : ""} ago`;
   }
 
-  const handleLike =async () =>{
-    const res =await axiosPublic.post(`/post/:${_id}/likes`,{
-    })
-   
+  if (userLoading) {
+    return <Loading></Loading>;
   }
-
-
+  const handleLike = async () => {
+    try {
+      const res = await axiosPublic.post(`/post/${_id}/likes`, {
+        userId: users?._id,
+      });
+      if (res.data.success) {
+        refetch();
+        Swal.fire({
+          title: "Like Added",
+          text: "Thanks For Liking",
+          timer: 2000,
+          icon: "success",
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Already Liked",
+        text: "You've Already Liked This Post",
+        timer: 2000,
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <div className="space-y-2 relative ">
@@ -55,7 +78,10 @@ const SingleCard = ({ post }) => {
       <h1 className="">{caption}</h1>
       <div className="flex gap-10 mt-2">
         <div className=" flex items-center gap-1">
-          <p onClick={handleLike} className="hover:text-red-600 text-sm cursor-pointer">
+          <p
+            onClick={handleLike}
+            className="hover:text-red-600 text-sm cursor-pointer"
+          >
             <FaHeart />
           </p>
           <p className="">{likes?.length}</p>

@@ -30,7 +30,7 @@ const Gallery = () => {
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-5 gap-20 px-3">
           {posts.map((post) => (
-            <SingleCard key={post._id} post={post}></SingleCard>
+            <SingleCard key={post._id} post={post} refetch={refetch}></SingleCard>
           ))}
         </div>
       </section>
