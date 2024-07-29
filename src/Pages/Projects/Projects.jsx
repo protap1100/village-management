@@ -10,7 +10,7 @@ const Projects = ({ search }) => {
   if (loading) {
     return <Loading></Loading>;
   }
-console.log(projects)
+// console.log(projects)
   return (
     <div>
       <SectionTitle

@@ -8,10 +8,13 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -66,6 +69,27 @@ const SignUp = () => {
           console.log(result.user, "user");
           updateUserProfile(name, photoUrl)
             .then(() => {
+              const userInfo = {
+                name: name,
+                email: email,
+                photoUrl: photoUrl,
+                password: password,
+                date: new Date(),
+              };
+              axiosPublic.post("/register", userInfo).then((res) => {
+                console.log("user added to the database");
+                if (res.data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User Created Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              });
               toast.success("User registered successfully!");
               reset();
               navigate("/");
@@ -106,7 +130,9 @@ const SignUp = () => {
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 {...register("name", { required: "Name is required" })}
               />
-              {errors.name && <p className="text-red-600">{errors.name.message}</p>}
+              {errors.name && (
+                <p className="text-red-600">{errors.name.message}</p>
+              )}
             </div>
             <div className="mb-5">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -126,7 +152,9 @@ const SignUp = () => {
                   },
                 })}
               />
-              {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-red-600">{errors.email.message}</p>
+              )}
             </div>
             <div className="mb-5">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -151,7 +179,9 @@ const SignUp = () => {
                   name="password"
                   placeholder="Password"
                   className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                  {...register("password", { required: "Password is required" })}
+                  {...register("password", {
+                    required: "Password is required",
+                  })}
                 />
                 <span
                   className="absolute animate__animated animate__fadeInDown inset-y-0 right-0 pr-3 flex items-center"
@@ -163,11 +193,16 @@ const SignUp = () => {
                     <FaEyeSlash className="text-gray-800 text-2xl cursor-pointer" />
                   )}
                 </span>
-                {errors.password && <p className="text-red-600">{errors.password.message}</p>}
+                {errors.password && (
+                  <p className="text-red-600">{errors.password.message}</p>
+                )}
               </div>
             </div>
             <label className="label">
-              <a href="#" className="block text-base font-medium text-[#07074D]">
+              <a
+                href="#"
+                className="block text-base font-medium text-[#07074D]"
+              >
                 Forgot password?
               </a>
             </label>

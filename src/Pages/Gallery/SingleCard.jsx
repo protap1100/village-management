@@ -2,17 +2,19 @@ import moment from "moment/moment";
 import { FaCommentAlt, FaHeart, FaShare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SingleCard = ({ post }) => {
   const { _id, image, caption, added_by, added_on, likes, comment } = post;
   const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const addedDate = moment(added_on);
   const now = moment();
   const minutesAgo = now.diff(addedDate, "minutes");
   const hoursAgo = now.diff(addedDate, "hours");
   const daysAgo = now.diff(addedDate, "days");
   const yearsAgo = now.diff(addedDate, "years");
-
+  // console.log(user?.photoURL);
   let timeAgo;
 
   if (minutesAgo < 60) {
@@ -20,10 +22,18 @@ const SingleCard = ({ post }) => {
   } else if (hoursAgo < 24) {
     timeAgo = `${hoursAgo}h${hoursAgo !== 1 ? "" : ""} ago`;
   } else if (daysAgo < 365) {
-    timeAgo = `${daysAgo}day${daysAgo !== 1 ? "" : ""} ago`;
+    timeAgo = `${daysAgo}d${daysAgo !== 1 ? "" : ""} ago`;
   } else {
-    timeAgo = `${yearsAgo}year${yearsAgo !== 1 ? "" : ""} ago`;
+    timeAgo = `${yearsAgo}yr${yearsAgo !== 1 ? "" : ""} ago`;
   }
+
+  const handleLike =async () =>{
+    const res =await axiosPublic.post(`/post/:${_id}/likes`,{
+    })
+   
+  }
+
+
 
   return (
     <div className="space-y-2 relative ">
@@ -44,19 +54,19 @@ const SingleCard = ({ post }) => {
       </div>
       <h1 className="">{caption}</h1>
       <div className="flex gap-10 mt-2">
-        <div className="flex items-center gap-1">
-          <p className="text-red-500 text-sm cursor-pointer">
+        <div className=" flex items-center gap-1">
+          <p onClick={handleLike} className="hover:text-red-600 text-sm cursor-pointer">
             <FaHeart />
           </p>
-          <p className="">{likes?.length > 1 ? 0 : likes?.length}</p>
+          <p className="">{likes?.length}</p>
           <p className="">Likes</p>
         </div>
-        <Link to={`/post-details/${_id}`}>
+        <Link className="hover:text-red-600" to={`/post-details/${_id}`}>
           <div className="flex items-center gap-1">
             <p className="text-green-500 text-sm cursor-pointer">
               <FaCommentAlt />
             </p>
-            <p className="">{comment?.length > 1 ? 0 : comment?.length}</p>
+            <p className="">{comment?.length}</p>
             <p className=""> Comments</p>
           </div>
         </Link>
