@@ -18,53 +18,77 @@ const SingleCard = ({ post, refetch }) => {
   const hoursAgo = now.diff(addedDate, "hours");
   const daysAgo = now.diff(addedDate, "days");
   const yearsAgo = now.diff(addedDate, "years");
-  // console.log(user?.photoURL);
   let timeAgo;
 
   if (minutesAgo < 60) {
-    timeAgo = `${minutesAgo}m${minutesAgo !== 1 ? "" : ""} ago`;
+    timeAgo = `${minutesAgo}m ago`;
   } else if (hoursAgo < 24) {
-    timeAgo = `${hoursAgo}h${hoursAgo !== 1 ? "" : ""} ago`;
+    timeAgo = `${hoursAgo}h ago`;
   } else if (daysAgo < 365) {
-    timeAgo = `${daysAgo}d${daysAgo !== 1 ? "" : ""} ago`;
+    timeAgo = `${daysAgo}d ago`;
   } else {
-    timeAgo = `${yearsAgo}yr${yearsAgo !== 1 ? "" : ""} ago`;
+    timeAgo = `${yearsAgo}yr ago`;
   }
 
   if (userLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
+  console.log(users);
   const handleLike = async () => {
-    try {
-      const res = await axiosPublic.post(`/post/${_id}/likes`, {
-        userId: users?._id,
-      });
-      if (res.data.success) {
+    if (user) {
+      try {
+        const res = await axiosPublic.post(`/post/${_id}/likes`, {
+          userId: users?._id,
+        });
         refetch();
+        if (res.data.success) {
+          Swal.fire({
+            title: "Like Added",
+            text: "Thanks For Liking",
+            timer: 2000,
+            icon: "success",
+          });
+        }
+      } catch (error) {
         Swal.fire({
-          title: "Like Added",
-          text: "Thanks For Liking",
+          title: "Already Liked",
+          text: "You've Already Liked This Post",
           timer: 2000,
-          icon: "success",
+          icon: "error",
         });
       }
-    } catch (error) {
+    } else {
       Swal.fire({
-        title: "Already Liked",
-        text: "You've Already Liked This Post",
-        timer: 2000,
-        icon: "error",
+        title: "Unable To Like",
+        text: "Please Login To Like",
+        timer: 3000,
+        icon: "success",
       });
     }
   };
 
+  const handleShare = (platform) => {
+    const postUrl = `https://yourwebsite.com/post-details/${_id}`;
+    let shareUrl = "";
+
+    if (platform === "facebook") {
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        postUrl
+      )}`;
+    } else if (platform === "whatsapp") {
+      shareUrl = `https://wa.me/?text=${encodeURIComponent(postUrl)}`;
+    }
+
+    window.open(shareUrl, "_blank");
+  };
+
   return (
-    <div className="space-y-2 relative ">
+    <div className="space-y-2 relative bg-gray-100 rounded p-2">
       <div className="flex gap-2 items-start">
-        <img src={user?.photoURL} className="h-10 w-10 rounded" alt="" />
+        <img src={image} className="h-10 w-10 rounded" alt="" />
         <Link>
-          <div>
-            <h1 className="font-semibold"> {added_by}</h1>
+          <div className="hover:text-green-600">
+            <h1 className=" font-semibold">{added_by}</h1>
             <h1 className="font-light text-xs">{timeAgo}</h1>
           </div>
         </Link>
@@ -76,31 +100,28 @@ const SingleCard = ({ post, refetch }) => {
         </div>
       </div>
       <h1 className="">{caption}</h1>
-      <div className="flex gap-10 mt-2">
-        <div className=" flex items-center gap-1">
-          <p
-            onClick={handleLike}
-            className="hover:text-red-600 text-sm cursor-pointer"
-          >
+      <div className="flex gap-4 mt-2">
+        <div className="flex hover:text-red-600 cursor-pointer items-center gap-1">
+          <p onClick={handleLike} className="text-sm cursor-pointer">
             <FaHeart />
           </p>
-          <p className="">{likes?.length}</p>
-          <p className="">Likes</p>
+          <p>{likes?.length}</p>
+          <p>Likes</p>
         </div>
         <Link className="hover:text-red-600" to={`/post-details/${_id}`}>
           <div className="flex items-center gap-1">
-            <p className="text-green-500 text-sm cursor-pointer">
+            <p className="text-sm cursor-pointer">
               <FaCommentAlt />
             </p>
-            <p className="">{comment?.length}</p>
-            <p className=""> Comments</p>
+            <p>{comment?.length}</p>
+            <p>Comments</p>
           </div>
         </Link>
         <div className="flex items-center gap-3">
           <h1>Share</h1>
-          <h1 className="">
+          <button className="cursor-pointer">
             <FaShare></FaShare>
-          </h1>
+          </button>
         </div>
       </div>
     </div>

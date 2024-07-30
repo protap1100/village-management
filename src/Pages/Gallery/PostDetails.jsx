@@ -4,15 +4,14 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Loading from "../../Others/Loading";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
-import useUser from "../../Hooks/useUser";
+import Swal from "sweetalert2";
 
 const PostDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  const [users, userLoading] = useUser();
   const [comment, setComment] = useState("");
-  const { data: post = {}, isLoading: loading } = useQuery({
+  const { data: post = {}, isLoading: loading, refetch } = useQuery({
     queryKey: ["post", id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/post-details/${id}`);
@@ -27,12 +26,21 @@ const PostDetails = () => {
       photo: user?.photoURL,
     });
     setComment("");
-    console.log(res);
+    refetch();
+    console.log(res.status);
+    if(res.status === 200){
+      Swal.fire({
+        title : "Comment added",
+        text:"Comment Added Successfully",
+        icon:"success",
+        timer: 2000
+      })
+    } 
   };
 
   // console.log("email user",users)
 
-  if (loading || userLoading) {
+  if (loading) {
     return <Loading />;
   }
   // console.log(post?.comment[4].photo);
