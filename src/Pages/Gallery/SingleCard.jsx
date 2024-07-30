@@ -99,7 +99,7 @@ const SingleCard = ({ post, refetch }) => {
           <p>Nature</p>
         </div>
       </div>
-      <h1 className="">{caption}</h1>
+      <h1 className="text-sm">{caption}</h1>
       <div className="flex gap-4 mt-2">
         <div className="flex hover:text-red-600 cursor-pointer items-center gap-1">
           <p onClick={handleLike} className="text-sm cursor-pointer">

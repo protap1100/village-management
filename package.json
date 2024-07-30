@@ -34,7 +34,8 @@
     "react-tooltip": "^5.27.1",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.12.2",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.4",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

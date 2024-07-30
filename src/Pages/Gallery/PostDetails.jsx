@@ -5,22 +5,37 @@ import Loading from "../../Others/Loading";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useUser from "../../Hooks/useUser";
+import { FaTrash } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
 
 const PostDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
+  const [users, userLoading] = useUser();
   const { user } = useAuth();
   const [comment, setComment] = useState("");
-  const { data: post = {}, isLoading: loading, refetch } = useQuery({
+  const {
+    data: post = {},
+    isLoading: loading,
+    refetch,
+  } = useQuery({
     queryKey: ["post", id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/post-details/${id}`);
       return res.data;
     },
   });
+
+  if (userLoading) {
+    return <Loading></Loading>;
+  }
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     const res = await axiosPublic.post(`/post/${id}/comments`, {
+      uniqueId: uuidv4(),
+      commentUser: users?._id,
       comment: comment,
       author: user?.displayName,
       photo: user?.photoURL,
@@ -28,15 +43,20 @@ const PostDetails = () => {
     setComment("");
     refetch();
     console.log(res.status);
-    if(res.status === 200){
+    if (res.status === 200) {
       Swal.fire({
-        title : "Comment added",
-        text:"Comment Added Successfully",
-        icon:"success",
-        timer: 2000
-      })
-    } 
+        title: "Comment added",
+        text: "Comment Added Successfully",
+        icon: "success",
+        timer: 2000,
+      });
+    }
   };
+
+  const handleDeleteComment = (id) =>{
+    console.log(id)
+  }
+
 
   // console.log("email user",users)
 
@@ -83,12 +103,25 @@ const PostDetails = () => {
         {post?.comment && post?.comment?.length > 0 ? (
           post?.comment?.map((cmnt, index) => (
             <div key={index} className="mt-2 p-2 bg-gray-100 rounded-md">
-              <div className="flex gpa-2">
-                <img className="w-8 h-8" src={cmnt?.photo} alt="" />
-                <p className="font-bold -mt-1">{cmnt.author}</p>
+              <div className="flex justify-between">
+                <div className="flex gpa-2">
+                  <img className="w-8 h-8" src={cmnt?.photo} alt="" />
+                  <p className="font-bold -mt-1">{cmnt.author}</p>
+                </div>
+                <div>
+                  {cmnt.commentUser == users?._id ? (
+                    <button onClick={()=>handleDeleteComment(cmnt?.uniqueId)} className="text-red-500 cursor-pointer hover:text-red-700">
+                      <FaTrash></FaTrash>
+                    </button>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
               <p className="text-sm font-light mt-2">{cmnt.text}</p>
-              <p className="text-sm font-light">{cmnt.timestamp.slice(0, 10)}</p>
+              <p className="text-sm font-light">
+                {cmnt.timestamp.slice(0, 10)}
+              </p>
             </div>
           ))
         ) : (
