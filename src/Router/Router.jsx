@@ -27,9 +27,10 @@ import AllUsers from "../Pages/Dashboard/ManageUsers/AllUsers";
 import AddOccasions from "../Pages/Dashboard/ManageOccaions/AddOccasions";
 import AddProjects from "../Pages/Dashboard/ManageProjects/AddProjects";
 import AddMember from "../Pages/Dashboard/ManageMember.jsx/AddMember";
-import AboutMe from "../Pages/Profile/AboutMe";
 import PrivateRouter from "./PrivateRouter";
 import PostDetails from "../Pages/Gallery/PostDetails";
+import UserProfile from "../Pages/Profile/UserProfile";
+import UpdateProfileInfo from "../Pages/Profile/UpdateProfileInfo";
 
 export const router = createBrowserRouter([
   {
@@ -90,10 +91,14 @@ export const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path: "/about-me",
+        path:"/update-profile",
+        element : <UpdateProfileInfo></UpdateProfileInfo>
+      },
+      {
+        path: "/user-home",
         element: (
           <PrivateRouter>
-            <AboutMe></AboutMe>
+            <UserProfile></UserProfile>
           </PrivateRouter>
         ),
       },

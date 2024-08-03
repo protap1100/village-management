@@ -54,6 +54,9 @@ const Post = ({ refetch }) => {
   };
   return (
     <>
+      <div>
+        <h1 className="text-xl font-bold text-orange-500 text-center mt-3">Make A Post </h1>
+      </div>
       <div className=" flex justify-center items-center ">
         <form
           action=""
