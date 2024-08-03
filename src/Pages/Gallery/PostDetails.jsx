@@ -6,7 +6,7 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useUser from "../../Hooks/useUser";
-import { FaTrash } from "react-icons/fa";
+import { FaCommentAlt, FaHeart, FaShare, FaTrash } from "react-icons/fa";
 import { v4 as uuidv4 } from "uuid";
 
 const PostDetails = () => {
@@ -53,17 +53,32 @@ const PostDetails = () => {
     }
   };
 
-  const handleDeleteComment = (id) =>{
-    console.log(id)
-  }
-
-
-  // console.log("email user",users)
+  const handleDeleteComment = async (uniqueId) => {
+    try {
+      const res = await axiosPublic.delete(`/post/${id}/comment/${uniqueId}`);
+      if (res.status === 200) {
+        refetch();
+        Swal.fire({
+          title: "Comment deleted",
+          text: "Comment Deleted Successfully",
+          icon: "success",
+          timer: 2000,
+        });
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+      Swal.fire({
+        title: "Error",
+        text: "Failed to delete the comment",
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  };
 
   if (loading) {
     return <Loading />;
   }
-  // console.log(post?.comment[4].photo);
 
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white shadow-md rounded-lg">
@@ -74,10 +89,33 @@ const PostDetails = () => {
           className="w-full rounded-md"
         />
       </div>
+      <div className="flex justify-between">
+        <div className="flex hover:text-red-600 cursor-pointer items-center gap-1">
+          <p className="text-sm cursor-pointer">
+            <FaHeart />
+          </p>
+          <p>{post?.likes?.length}</p>
+          <p>Likes</p>
+        </div>
+        <div className="flex items-center gap-1">
+          <p className="text-sm cursor-pointer">
+            <FaCommentAlt />
+          </p>
+          <p>{comment?.length}</p>
+          <p>Comments</p>
+        </div>
+        <div className="flex items-center gap-3">
+          <h1>Share</h1>
+          <button className="cursor-pointer">
+            <FaShare></FaShare>
+          </button>
+        </div>
+      </div>
       <div>
         <p className="text-lg font-semibold">{post.caption}</p>
         <p className="text-sm text-gray-500">{post.added_on}</p>
       </div>
+      <div></div>
       <div className="mt-4">
         <form
           onSubmit={handleCommentSubmit}
@@ -109,12 +147,13 @@ const PostDetails = () => {
                   <p className="font-bold -mt-1">{cmnt.author}</p>
                 </div>
                 <div>
-                  {cmnt.commentUser == users?._id ? (
-                    <button onClick={()=>handleDeleteComment(cmnt?.uniqueId)} className="text-red-500 cursor-pointer hover:text-red-700">
+                  {cmnt?.commentUser === users?._id && (
+                    <button
+                      onClick={() => handleDeleteComment(cmnt?.uniqueId)}
+                      className="text-red-500 cursor-pointer hover:text-red-700"
+                    >
                       <FaTrash></FaTrash>
                     </button>
-                  ) : (
-                    ""
                   )}
                 </div>
               </div>

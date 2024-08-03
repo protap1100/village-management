@@ -33,7 +33,7 @@ const SingleCard = ({ post, refetch }) => {
   if (userLoading) {
     return <Loading />;
   }
-  console.log(users);
+  // console.log(users);
   const handleLike = async () => {
     if (user) {
       try {

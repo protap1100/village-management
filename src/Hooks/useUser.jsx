@@ -5,7 +5,7 @@ import useAuth from "./useAuth";
 const useUser = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  console.log(user?.email);
+  // console.log(user?.email);
   const {
     data: users = [],
     isLoading: userLoading,
