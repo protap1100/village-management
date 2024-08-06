@@ -13,6 +13,7 @@ const useUser = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/logged-user/${user?.email}`);
+      // console.log(res.data)
       return res.data;
     },
   });

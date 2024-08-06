@@ -12,6 +12,7 @@ const AllUserPost = () => {
   const {
     data: posts = [],
     isLoading: postLoading,
+    refetch
   } = useQuery({
     queryKey: ["post"],
     queryFn: async () => {
@@ -24,8 +25,6 @@ const AllUserPost = () => {
     return <Loading></Loading>;
   }
 
-  console.log(posts)
-
   return (
     <>
       <div>
@@ -33,7 +32,7 @@ const AllUserPost = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {posts.map((post, index) => 
-          <UserPostCard key={index} post={post}></UserPostCard>
+          <UserPostCard key={index} post={post} refetch={refetch}></UserPostCard>
         )}
       </div>
     </>

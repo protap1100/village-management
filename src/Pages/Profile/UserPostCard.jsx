@@ -9,10 +9,14 @@ import {
   FaTrash,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
-const UserPostCard = ({ post }) => {
+const UserPostCard = ({ post, refetch }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const { _id, image, caption, added_by, added_on, likes, comment } = post;
+  const { _id, image, caption, added_by, added_on, user_id, likes, comment } =
+    post;
+  const axiosPublic = useAxiosPublic();
   const addedDate = moment(added_on);
   const now = moment();
   const minutesAgo = now.diff(addedDate, "minutes");
@@ -35,6 +39,44 @@ const UserPostCard = ({ post }) => {
     setDropdownOpen(!isDropdownOpen);
   };
 
+  const handleDelete = async () => {
+    try {
+      const result = await Swal.fire({
+        title: "Delete This Post",
+        text: "Do you want to delete this item?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      });
+
+      if (result.isConfirmed) {
+        const response = await axiosPublic.delete(`/post-delete/${user_id}`);
+        console.log(response.data);
+
+        if (response.status === 200) {
+          refetch();
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your post has been deleted.",
+            icon: "success",
+          });
+          // Optionally: Refresh the UI or redirect the user
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting the post:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "There was a problem deleting the post. Please try again later.",
+        icon: "error",
+      });
+    }
+  };
+
+  const handleEdit = () => {};
+
   return (
     <div className="relative bg-gray-100 rounded p-4">
       <div className="absolute top-2 right-2">
@@ -46,10 +88,16 @@ const UserPostCard = ({ post }) => {
         </button>
         {isDropdownOpen && (
           <div className="absolute top-8 right-0 bg-white border rounded shadow-md w-32 z-10">
-            <button className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2">
+            <button
+              onClick={handleEdit}
+              className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+            >
               <FaEdit /> Edit
             </button>
-            <button className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2">
+            <button
+              onClick={handleDelete}
+              className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+            >
               <FaTrash /> Delete
             </button>
           </div>

@@ -2,12 +2,15 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useUser from "../../Hooks/useUser";
+import Loading from "../../Others/Loading";
 
 const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Post = ({ refetch }) => {
   const { user } = useAuth();
+  const [users, userLoading ] = useUser();
   const {
     register,
     handleSubmit,
@@ -16,6 +19,10 @@ const Post = ({ refetch }) => {
   } = useForm();
 
   const axiosPublic = useAxiosPublic();
+  if (userLoading) {
+    return <Loading></Loading>;
+  }
+  // console.log(users._id);
 
   const onSubmit = async (data) => {
     // console.log(data)
@@ -34,6 +41,7 @@ const Post = ({ refetch }) => {
         added_by: user?.displayName,
         user_email: user?.email,
         added_on: createdAt,
+        user_id: users?._id,
         likes: [],
         comment: [],
       };
@@ -52,10 +60,13 @@ const Post = ({ refetch }) => {
       }
     }
   };
+
   return (
     <>
       <div>
-        <h1 className="text-xl font-bold text-orange-500 text-center mt-3">Make A Post </h1>
+        <h1 className="text-xl font-bold text-orange-500 text-center mt-3">
+          Make A Post{" "}
+        </h1>
       </div>
       <div className=" flex justify-center items-center ">
         <form
