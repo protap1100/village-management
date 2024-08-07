@@ -31,6 +31,8 @@ import PrivateRouter from "./PrivateRouter";
 import PostDetails from "../Pages/Gallery/PostDetails";
 import UserProfile from "../Pages/Profile/UserProfile";
 import UpdateProfileInfo from "../Pages/Profile/UpdateProfileInfo";
+import OccasionDetails from "../Pages/Occasion/OccasionDetails";
+import ProjectDetails from "../Pages/Projects/ProjectDetails";
 
 export const router = createBrowserRouter([
   {
@@ -59,8 +61,16 @@ export const router = createBrowserRouter([
         element: <MainOccasions></MainOccasions>,
       },
       {
+        path: "/occasions-details/:id",
+        element: <OccasionDetails></OccasionDetails>,
+      },
+      {
         path: "/projects",
         element: <MainProject></MainProject>,
+      },
+      {
+        path: "/project-details/:id",
+        element: <ProjectDetails></ProjectDetails>,
       },
       {
         path: "/gallery",
@@ -91,8 +101,8 @@ export const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path:"/update-profile",
-        element : <UpdateProfileInfo></UpdateProfileInfo>
+        path: "/update-profile",
+        element: <UpdateProfileInfo></UpdateProfileInfo>,
       },
       {
         path: "/user-home",

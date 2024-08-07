@@ -9,11 +9,11 @@ import posts from "/posts.png";
 
 const navItems = [
   { name: "Dashboard", icon: dashboard, path: "admin-home" },
-  { name: "All Users", icon: users, path: "admin-user" },
-  { name: "All Members", icon: group, path: "all-members" },
-  { name: "All Occasions", icon: festival, path: "all-occasions" },
-  { name: "All Projects", icon: project, path: "all-projects" },
-  { name: "All Posts", icon: posts, path: "all-posts" },
+  { name: "Manage Users", icon: users, path: "admin-user" },
+  { name: "Manage Members", icon: group, path: "all-members" },
+  { name: "Manage Occasions", icon: festival, path: "all-occasions" },
+  { name: "Manage Projects", icon: project, path: "all-projects" },
+  { name: "Manage Posts", icon: posts, path: "all-posts" },
   { name: "FeedBack", icon: contact, path: "feedback" },
 ];
 

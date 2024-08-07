@@ -10,6 +10,7 @@ const Occasions = ({ search }) => {
   if (loading) {
     return <Loading></Loading>;
   }
+  // console.log(occasions)
 
   return (
     <section>
@@ -20,7 +21,7 @@ const Occasions = ({ search }) => {
       ></SectionTitle>
       <div className="text-center text-green-500 mt-5">
         {search}
-        <h1 className="text-2xl font-bold">Total Occasions Of Occasions: 10</h1>
+        <h1 className="text-2xl font-bold">Total Occasions Of Occasions: {occasions?.length} </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {occasions.map((festival, index) => (

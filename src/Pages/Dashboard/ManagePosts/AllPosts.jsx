@@ -1,29 +1,52 @@
 import { FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import Loading from "../../../Others/Loading";
 
 const AllPosts = () => {
-  const posts = [
-    {
-      id: 1,
-      name: "John Doe",
-      date: "2024-07-10",
-      likes: 120,
-      comments: 45,
-      photo: "https://via.placeholder.com/150",
-      title: "A Day in the Life",
-      desc: "This post describes a typical day in my life.",
+  const axiosPublic = useAxiosPublic();
+  // console.log(user?.email);
+  const { data: posts = [], isLoading: postLoading,refetch } = useQuery({
+    queryKey: ["post"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/post`);
+      return res.data;
     },
-    {
-      id: 2,
-      name: "Jane Smith",
-      date: "2024-07-08",
-      likes: 200,
-      comments: 80,
-      photo: "https://via.placeholder.com/150",
-      title: "Traveling the World",
-      desc: "Sharing my experiences traveling around the globe.",
-    },
-  ];
+  });
+
+  const handleDelete = (post) => {
+    Swal.fire({
+      title: `Delete ${post.caption}`,
+      text: "Do you want to delete this item?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/post-delete/${post._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: `${post.caption} has been deleted successfully`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  if(postLoading){
+    return <Loading></Loading>
+  }
+
+
+
 
   return (
     <div>
@@ -36,40 +59,46 @@ const AllPosts = () => {
           <thead className="bg-gray-800 text-white">
             <tr>
               <th className="py-3 px-4">Id</th>
-              <th className="py-3 px-4">Name</th>
+              <th className="py-3 px-4">Added By</th>
               <th className="py-3 px-4">Date</th>
               <th className="py-3 px-4">Likes</th>
               <th className="py-3 px-4">Comments</th>
               <th className="py-3 px-4">Photo</th>
-              <th className="py-3 px-4">Title</th>
               <th className="py-3 px-4">Description</th>
               <th className="py-3 px-4">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
               <tr
-                key={post.id}
+                key={index}
                 className="hover:bg-gray-100 transition-colors duration-200"
               >
-                <td className="py-3 px-4 border-b text-center">{post.id}</td>
-                <td className="py-3 px-4 border-b text-center">{post.name}</td>
-                <td className="py-3 px-4 border-b text-center">{post.date}</td>
-                <td className="py-3 px-4 border-b text-center">{post.likes}</td>
+                <td className="py-3 px-4 border-b text-center">{index + 1}</td>
                 <td className="py-3 px-4 border-b text-center">
-                  {post.comments}
+                  {post?.added_by}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {post?.added_on.slice(0, 15)}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {post?.likes?.length}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  {post?.comment?.length}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
                   <img
-                    src={post.photo}
-                    alt={post.title}
+                    src={post?.image}
+                    alt={post?.image}
                     className="w-10 h-10 object-cover rounded"
                   />
                 </td>
-                <td className="py-3 px-4 border-b text-center">{post.title}</td>
-                <td className="py-3 px-4 border-b text-center">{post.desc}</td>
                 <td className="py-3 px-4 border-b text-center">
-                  <div className="flex justify-center">
+                  {post.caption}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  <div onClick={()=>handleDelete(post)} className="flex justify-center">
                     <FaTrashAlt className="text-red-500 cursor-pointer" />
                   </div>
                 </td>
