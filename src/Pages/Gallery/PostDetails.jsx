@@ -101,7 +101,7 @@ const PostDetails = () => {
           <p className="text-sm cursor-pointer">
             <FaCommentAlt />
           </p>
-          <p>{comment?.length}</p>
+          <p>{post?.comment?.length}</p>
           <p>Comments</p>
         </div>
         <div className="flex items-center gap-3">

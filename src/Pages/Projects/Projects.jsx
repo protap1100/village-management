@@ -10,7 +10,7 @@ const Projects = ({ search }) => {
   if (loading) {
     return <Loading></Loading>;
   }
-// console.log(projects)
+
   return (
     <div>
       <SectionTitle
@@ -20,7 +20,9 @@ const Projects = ({ search }) => {
       ></SectionTitle>
       <div className="text-center text-green-500 mt-5">
         {search}
-        <h1 className="text-2xl font-bold">Total Project Of BGTS: 40</h1>
+        <h1 className="text-2xl font-bold">
+          Total Project Of BGTS: {projects.length}
+        </h1>
       </div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 my-5">
         {projects.map((project, index) => (
