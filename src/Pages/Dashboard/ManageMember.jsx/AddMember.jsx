@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -14,6 +14,7 @@ const AddMember = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -48,9 +49,7 @@ const AddMember = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
-      // Image upload
       const imageFile = { image: data.image[0] };
       const res = await axiosPublic.post(image_hosting_api, imageFile, {
         headers: {
@@ -59,30 +58,36 @@ const AddMember = () => {
       });
 
       if (res.data.success) {
-        // Prepare member data
         const memberData = {
           ...data,
           image: res.data.data.url,
-          createdBy: user?.displayName || 'Unknown',
-          createdByEmail: user?.email || 'Unknown',
+          added_by: user?.displayName,
+          added_email: user?.email,
+          createdAt: new Date(),
         };
 
-        // Post member data
         await axiosPublic.post("/add-member", memberData);
 
         Swal.fire({
-          title: 'Success!',
-          text: 'Member added successfully.',
-          icon: 'success',
-          confirmButtonText: 'OK'
+          title: "Success!",
+          text: "Member added successfully!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Failed to upload image!",
+          icon: "error",
+          confirmButtonText: "OK",
         });
       }
     } catch (error) {
       Swal.fire({
-        title: 'Error!',
-        text: 'An error occurred while adding the member.',
-        icon: 'error',
-        confirmButtonText: 'OK'
+        title: "Error!",
+        text: "An error occurred while adding the member!",
+        icon: "error",
+        confirmButtonText: "OK",
       });
     }
   };
@@ -96,7 +101,7 @@ const AddMember = () => {
       <div>
         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
           <div className="block lg:flex gap-5">
-            <div className="mb-5 lg:flex-1">
+            <div className="mb-5  lg:flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Name
               </label>
@@ -110,7 +115,7 @@ const AddMember = () => {
                 <p className="text-red-500">{errors.name.message}</p>
               )}
             </div>
-            <div className="mb-5 lg:flex-1">
+            <div className="mb-5  lg:flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Father Name
               </label>
@@ -230,8 +235,8 @@ const AddMember = () => {
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Current Address
               </label>
-              <textarea
-                rows="3"
+              <input
+                type="text"
                 placeholder="Enter Current Address"
                 {...register("currentAddress", {
                   required: "Current Address is required",
@@ -246,8 +251,8 @@ const AddMember = () => {
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Permanent Address
               </label>
-              <textarea
-                rows="3"
+              <input
+                type="text"
                 placeholder="Enter Permanent Address"
                 {...register("permanentAddress", {
                   required: "Permanent Address is required",
@@ -255,7 +260,9 @@ const AddMember = () => {
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
               {errors.permanentAddress && (
-                <p className="text-red-500">{errors.permanentAddress.message}</p>
+                <p className="text-red-500">
+                  {errors.permanentAddress.message}
+                </p>
               )}
             </div>
           </div>
@@ -266,7 +273,7 @@ const AddMember = () => {
               </label>
               <input
                 type="text"
-                placeholder="Enter Education Details"
+                placeholder="Enter Education"
                 {...register("education", {
                   required: "Education is required",
                 })}
@@ -278,13 +285,13 @@ const AddMember = () => {
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Social Media
+                Social
               </label>
               <input
                 type="text"
-                placeholder="Enter Social Media Links"
+                placeholder="Enter Social Information"
                 {...register("social", {
-                  required: "Social Media is required",
+                  required: "Social Information is required",
                 })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
@@ -293,24 +300,56 @@ const AddMember = () => {
               )}
             </div>
           </div>
-          <div className="block lg:flex gap-5">
-            <div className="mb-5 flex-1">
-              <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Image
-              </label>
-              <input
-                type="file"
-                {...register("image", { required: "Image is required" })}
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-              />
-              {errors.image && (
-                <p className="text-red-500">{errors.image.message}</p>
-              )}
+          <div className="mb-5">
+            <label className="mb-3 block text-base font-medium text-[#07074D]">
+              Image
+            </label>
+            <input
+              type="file"
+              {...register("image", { required: "Image is required" })}
+              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+            {errors.image && (
+              <p className="text-red-500">{errors.image.message}</p>
+            )}
+          </div>
+
+          {/* Payment Status */}
+          <div className="mb-5">
+            <label className="mb-3 block text-base font-medium text-[#07074D]">
+              Payment Status
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+              {Object.keys(watch("paymentStatus")).map((month, index) => (
+                <div key={index} className="flex gap-5 mb-5">
+                  <div className="flex-1">
+                    <label className="mb-3 block text-base font-medium text-[#07074D]">
+                      {month}
+                    </label>
+                    <select
+                      {...register(`paymentStatus.${month}`, {
+                        required: true,
+                      })}
+                      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    >
+                      <option value="Paid">Paid</option>
+                      <option value="Unpaid">Unpaid</option>
+                    </select>
+                    {errors.paymentStatus && errors.paymentStatus[month] && (
+                      <p className="text-red-500">
+                        Payment status for {month} is required
+                      </p>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full rounded-md bg-[#6A64F1] py-3 px-6 text-base font-medium text-white hover:bg-[#6A64F1] focus:outline-none focus:ring-2 focus:ring-[#6A64F1] focus:ring-offset-2"
+            className="w-full rounded-md bg-[#6A64F1] py-3 px-6 text-base font-medium text-white outline-none transition duration-300 hover:bg-[#5A4BB8]"
           >
             Add Member
           </button>

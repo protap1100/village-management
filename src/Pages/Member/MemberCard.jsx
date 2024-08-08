@@ -33,7 +33,7 @@ const MemberCard = ({ member }) => {
       </div>
       <div className="mx-4 mt-4 lg:mx-0 lg:mt-0 px-4 mb-3">
         <button className="text-center p-2 bg-green-500 w-full rounded hover:bg-green-700 text-white cursor-pointer ">
-          <Link to={`/memberDetails/${member.id}`}>View Details</Link>
+          <Link to={`/member-details/${member._id}`}>View Details</Link>
         </button>
       </div>
     </div>
