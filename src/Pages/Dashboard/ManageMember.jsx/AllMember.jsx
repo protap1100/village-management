@@ -1,55 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
+import useMember from "../../../Hooks/useMember";
+import Loading from "../../../Others/Loading";
 
 const AllMembers = () => {
-  const members = [
-    {
-      id: "1",
-      name: "John Doe",
-      fatherName: "Michael Doe",
-      age: 35,
-      nid: "12345678901234567",
-      profession: "Engineer",
-      bloodGroup: "O+",
-      sex: "Male",
-      phone: "1234567890",
-      currentAddress: "Dhaka, Bangladesh",
-      permanentAddress: "Chittagong, Bangladesh",
-      education: "BSc in Computer Science",
-      social: "https://www.linkedin.com/johndoe",
-    },
-    {
-      id: "2",
-      name: "Jane Smith",
-      fatherName: "Robert Smith",
-      age: 28,
-      nid: "98765432109876543",
-      profession: "Teacher",
-      bloodGroup: "AB-",
-      sex: "Female",
-      phone: "9876543210",
-      currentAddress: "Dhaka, Bangladesh",
-      permanentAddress: "Rajshahi, Bangladesh",
-      education: "MSc in Physics",
-      social: "https://www.linkedin.com/janesmith",
-      paymentStatus: {
-        January: "Paid",
-        February: "Paid",
-        March: "Paid",
-        April: "Paid",
-        May: "Paid",
-        June: "Paid",
-        July: "Paid",
-        August: "Paid",
-        September: "Paid",
-        October: "Paid",
-        November: "Paid",
-        December: "Paid",
-      }
-    }
-  ];
+  const [members, memberLoading, refetch] = useMember();
 
+  if (memberLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div>
       <SectionTitle
@@ -57,7 +17,10 @@ const AllMembers = () => {
         subHeading={"Here is the information of all your members"}
       />
       <div className="overflow-x-auto p-3">
-        <Link to='/admin/add-member' className="inline-block p-2 bg-green-500 hover:bg-green-600 font-bold text-white rounded mb-5">
+        <Link
+          to="/admin/add-member"
+          className="inline-block p-2 bg-green-500 hover:bg-green-600 font-bold text-white rounded mb-5"
+        >
           Add Member
         </Link>
         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -81,9 +44,12 @@ const AllMembers = () => {
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
-              <tr key={member.id} className="hover:bg-gray-100 transition-colors duration-200">
-                <td className="py-3 px-4">{member.id}</td>
+            {members.map((member, index) => (
+              <tr
+                key={member._id}
+                className="hover:bg-gray-100 transition-colors duration-200"
+              >
+                <td className="py-3 px-4 text-center">{index + 1}</td>
                 <td className="py-3 px-4">{member.name}</td>
                 <td className="py-3 px-4">{member.fatherName}</td>
                 <td className="py-3 px-4">{member.age}</td>
@@ -96,7 +62,12 @@ const AllMembers = () => {
                 <td className="py-3 px-4">{member.permanentAddress}</td>
                 <td className="py-3 px-4">{member.education}</td>
                 <td className="py-3 px-4">
-                  <a href={member.social} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                  <a
+                    href={member.social}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
                     Facebook
                   </a>
                 </td>

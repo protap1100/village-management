@@ -6,7 +6,7 @@ const MemberCard = ({ member }) => {
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-xl h-80">
         <img
-          src={member.imageUrl}
+          src={member.image}
           alt={member.name}
           className="w-full h-full object-cover"
         />
