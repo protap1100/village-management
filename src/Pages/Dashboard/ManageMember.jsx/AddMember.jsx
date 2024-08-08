@@ -1,58 +1,90 @@
+import { useForm } from "react-hook-form";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
-import { useState } from 'react';
+import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from 'sweetalert2';
+
+const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddMember = () => {
-  const [paymentData, setPaymentData] = useState({
-    name: '',
-    fatherName: '',
-    age: '',
-    nid: '',
-    profession: '',
-    bloodGroup: '',
-    sex: 'Male',
-    phone: '',
-    currentAddress: '',
-    permanentAddress: '',
-    education: '',
-    social: '',
-    paymentStatus: {
-      January: '',
-      February: '',
-      March: '',
-      April: '',
-      May: '',
-      June: '',
-      July: '',
-      August: '',
-      September: '',
-      October: '',
-      November: '',
-      December: '',
-    }
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: "",
+      fatherName: "",
+      age: "",
+      nid: "",
+      profession: "",
+      bloodGroup: "",
+      sex: "Male",
+      phone: "",
+      currentAddress: "",
+      permanentAddress: "",
+      education: "",
+      social: "",
+      image: "",
+      paymentStatus: {
+        January: "Unpaid",
+        February: "Unpaid",
+        March: "Unpaid",
+        April: "Unpaid",
+        May: "Unpaid",
+        June: "Unpaid",
+        July: "Unpaid",
+        August: "Unpaid",
+        September: "Unpaid",
+        October: "Unpaid",
+        November: "Unpaid",
+        December: "Unpaid",
+      },
+    },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      // Image upload
+      const imageFile = { image: data.image[0] };
+      const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        headers: {
+          "content-Type": "multipart/form-data",
+        },
+      });
 
-  const handleMonthChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentData(prevData => ({
-      ...prevData,
-      paymentStatus: {
-        ...prevData.paymentStatus,
-        [name]: value
+      if (res.data.success) {
+        // Prepare member data
+        const memberData = {
+          ...data,
+          image: res.data.data.url,
+          createdBy: user?.displayName || 'Unknown',
+          createdByEmail: user?.email || 'Unknown',
+        };
+
+        // Post member data
+        await axiosPublic.post("/add-member", memberData);
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'Member added successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
       }
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(paymentData);
+    } catch (error) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'An error occurred while adding the member.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+    }
   };
 
   return (
@@ -60,53 +92,55 @@ const AddMember = () => {
       <SectionTitle
         heading={"Add Resident"}
         subHeading={"Add New Village Resident"}
-      ></SectionTitle>
+      />
       <div>
-        <form className="card-body" onSubmit={handleSubmit}>
-          <div className="flex gap-5">
-            <div className="mb-5 flex-1">
+        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+          <div className="block lg:flex gap-5">
+            <div className="mb-5 lg:flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Name
               </label>
               <input
                 type="text"
-                name="name"
-                id="name"
                 placeholder="Enter Resident Name"
-                value={paymentData.name}
-                onChange={handleChange}
+                {...register("name", { required: "Name is required" })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.name && (
+                <p className="text-red-500">{errors.name.message}</p>
+              )}
             </div>
-            <div className="mb-5 flex-1">
+            <div className="mb-5 lg:flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Father Name
               </label>
               <input
                 type="text"
-                name="fatherName"
-                id="fatherName"
                 placeholder="Enter Father's Name"
-                value={paymentData.fatherName}
-                onChange={handleChange}
+                {...register("fatherName", {
+                  required: "Father Name is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.fatherName && (
+                <p className="text-red-500">{errors.fatherName.message}</p>
+              )}
             </div>
           </div>
-          <div className="flex gap-5">
+          <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Age
               </label>
               <input
                 type="number"
-                name="age"
-                id="age"
                 placeholder="Enter Age"
-                value={paymentData.age}
-                onChange={handleChange}
+                {...register("age", { required: "Age is required" })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.age && (
+                <p className="text-red-500">{errors.age.message}</p>
+              )}
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -114,29 +148,33 @@ const AddMember = () => {
               </label>
               <input
                 type="text"
-                name="nid"
-                id="nid"
                 placeholder="Enter NID/Birth Certificate Number"
-                value={paymentData.nid}
-                onChange={handleChange}
+                {...register("nid", {
+                  required: "NID/Birth Certificate Number is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.nid && (
+                <p className="text-red-500">{errors.nid.message}</p>
+              )}
             </div>
           </div>
-          <div className="flex gap-5">
+          <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Profession
               </label>
               <input
                 type="text"
-                name="profession"
-                id="profession"
                 placeholder="Enter Profession"
-                value={paymentData.profession}
-                onChange={handleChange}
+                {...register("profession", {
+                  required: "Profession is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.profession && (
+                <p className="text-red-500">{errors.profession.message}</p>
+              )}
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -144,31 +182,33 @@ const AddMember = () => {
               </label>
               <input
                 type="text"
-                name="bloodGroup"
-                id="bloodGroup"
                 placeholder="Enter Blood Group"
-                value={paymentData.bloodGroup}
-                onChange={handleChange}
+                {...register("bloodGroup", {
+                  required: "Blood Group is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.bloodGroup && (
+                <p className="text-red-500">{errors.bloodGroup.message}</p>
+              )}
             </div>
           </div>
-          <div className="flex gap-5">
+          <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Sex
               </label>
               <select
-                name="sex"
-                id="sex"
-                value={paymentData.sex}
-                onChange={handleChange}
+                {...register("sex", { required: "Sex is required" })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               >
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
               </select>
+              {errors.sex && (
+                <p className="text-red-500">{errors.sex.message}</p>
+              )}
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -176,59 +216,65 @@ const AddMember = () => {
               </label>
               <input
                 type="tel"
-                name="phone"
-                id="phone"
                 placeholder="Enter Phone Number"
-                value={paymentData.phone}
-                onChange={handleChange}
+                {...register("phone", { required: "Phone Number is required" })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.phone && (
+                <p className="text-red-500">{errors.phone.message}</p>
+              )}
             </div>
           </div>
-          <div className="flex gap-5">
+          <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Current Address
               </label>
-              <input
-                type="text"
-                name="currentAddress"
-                id="currentAddress"
+              <textarea
+                rows="3"
                 placeholder="Enter Current Address"
-                value={paymentData.currentAddress}
-                onChange={handleChange}
+                {...register("currentAddress", {
+                  required: "Current Address is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.currentAddress && (
+                <p className="text-red-500">{errors.currentAddress.message}</p>
+              )}
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Permanent Address
               </label>
-              <input
-                type="text"
-                name="permanentAddress"
-                id="permanentAddress"
+              <textarea
+                rows="3"
                 placeholder="Enter Permanent Address"
-                value={paymentData.permanentAddress}
-                onChange={handleChange}
+                {...register("permanentAddress", {
+                  required: "Permanent Address is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.permanentAddress && (
+                <p className="text-red-500">{errors.permanentAddress.message}</p>
+              )}
             </div>
           </div>
-          <div className="flex gap-5">
+          <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
                 Education
               </label>
               <input
                 type="text"
-                name="education"
-                id="education"
-                placeholder="Enter Education Level"
-                value={paymentData.education}
-                onChange={handleChange}
+                placeholder="Enter Education Details"
+                {...register("education", {
+                  required: "Education is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.education && (
+                <p className="text-red-500">{errors.education.message}</p>
+              )}
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -236,41 +282,38 @@ const AddMember = () => {
               </label>
               <input
                 type="text"
-                name="social"
-                id="social"
                 placeholder="Enter Social Media Links"
-                value={paymentData.social}
-                onChange={handleChange}
+                {...register("social", {
+                  required: "Social Media is required",
+                })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
+              {errors.social && (
+                <p className="text-red-500">{errors.social.message}</p>
+              )}
             </div>
           </div>
-          <div className="flex gap-5">
-            {Object.keys(paymentData.paymentStatus).map((month, index) => (
-              <div key={index} className="mb-5 flex-1">
-                <label className="mb-3 block text-base font-medium text-[#07074D]">
-                  {month} 
-                </label>
-                <select
-                  name={month}
-                  value={paymentData.paymentStatus[month]}
-                  onChange={handleMonthChange}
-                  className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                >
-                  <option value="Paid">Paid</option>
-                  <option value="Unpaid">Unpaid</option>
-                </select>
-              </div>
-            ))}
+          <div className="block lg:flex gap-5">
+            <div className="mb-5 flex-1">
+              <label className="mb-3 block text-base font-medium text-[#07074D]">
+                Image
+              </label>
+              <input
+                type="file"
+                {...register("image", { required: "Image is required" })}
+                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+              {errors.image && (
+                <p className="text-red-500">{errors.image.message}</p>
+              )}
+            </div>
           </div>
-          <div className="flex justify-end mt-5">
-            <button
-              type="submit"
-              className="py-3 px-8 bg-[#6A64F1] text-white rounded-md font-medium hover:bg-[#553BDD] transition duration-300 ease-in-out"
-            >
-              Add Resident
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full rounded-md bg-[#6A64F1] py-3 px-6 text-base font-medium text-white hover:bg-[#6A64F1] focus:outline-none focus:ring-2 focus:ring-[#6A64F1] focus:ring-offset-2"
+          >
+            Add Member
+          </button>
         </form>
       </div>
     </div>
