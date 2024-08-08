@@ -7,10 +7,17 @@ const MemberDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
 
+<<<<<<< HEAD
   const { data: member = {}, isLoading: membersLoading } = useQuery({
     queryKey: ["member", id],
     queryFn: async () => {
       const res = await axiosPublic(`/members-details/${id}`);
+=======
+  const { data: members = {}, isLoading: membersLoading } = useQuery({
+    queryKey: ["member", id],
+    queryFn: async () => {
+      const res = await axiosPublic(`/members/${id}`);
+>>>>>>> 64b15d1172be214375e1e22e090c27f46811e3f0
       return res.data;
     },
   });
@@ -19,6 +26,7 @@ const MemberDetails = () => {
     return <Loading />;
   }
 
+<<<<<<< HEAD
   const {
     name,
     fatherName,
@@ -118,6 +126,9 @@ const MemberDetails = () => {
       </div>
     </div>
   );
+=======
+  return <div>Member Details</div>;
+>>>>>>> 64b15d1172be214375e1e22e090c27f46811e3f0
 };
 
 export default MemberDetails;
