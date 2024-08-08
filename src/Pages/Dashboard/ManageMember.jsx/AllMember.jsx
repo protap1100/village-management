@@ -3,9 +3,39 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import useMember from "../../../Hooks/useMember";
 import Loading from "../../../Others/Loading";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const AllMembers = () => {
   const [members, memberLoading, refetch] = useMember();
+
+  const axiosPublic = useAxiosPublic();
+
+  const handleDeleteMember = (member) => {
+    Swal.fire({
+      title: `Delete ${member?.name}`,
+      text: "Do you want to delete this Member?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/member-delete/${member?._id}`).then((res) => {
+          console.log(res);
+          if (res.data.deletedCount > 0 || res.data.userDeleted > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: `${member?.name} ${res.data.message}`,
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   if (memberLoading) {
     return <Loading></Loading>;
@@ -73,12 +103,15 @@ const AllMembers = () => {
                 </td>
                 <td className="py-3 px-4">
                   <div className="flex justify-center">
-                    <FaTrashAlt className="text-red-500 cursor-pointer" />
+                    <FaEdit className="text-green-500 cursor-pointer ml-2" />
                   </div>
                 </td>
-                <td className="py-3 px-4">
+                <td
+                  onClick={() => handleDeleteMember(member)}
+                  className="py-3 px-4"
+                >
                   <div className="flex justify-center">
-                    <FaEdit className="text-green-500 cursor-pointer ml-2" />
+                    <FaTrashAlt className="text-red-500 cursor-pointer" />
                   </div>
                 </td>
               </tr>
