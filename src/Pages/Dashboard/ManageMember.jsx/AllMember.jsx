@@ -102,9 +102,9 @@ const AllMembers = () => {
                   </a>
                 </td>
                 <td className="py-3 px-4">
-                  <div className="flex justify-center">
+                  <Link to={`/admin/update-member/${member._id}`} className="flex justify-center">
                     <FaEdit className="text-green-500 cursor-pointer ml-2" />
-                  </div>
+                  </Link>
                 </td>
                 <td
                   onClick={() => handleDeleteMember(member)}

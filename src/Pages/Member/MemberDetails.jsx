@@ -37,7 +37,7 @@ const MemberDetails = () => {
   } = member;
 
   return (
-    <div className="max-w-4xl mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-10 shadow-2xl transform hover:scale-105 transition-transform duration-500">
+    <div className="max-w-4xl mx-auto bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-10 shadow-2xl transform">
       <div className="flex flex-col lg:flex-row items-center gap-10">
         <img
           src={image}
@@ -103,17 +103,14 @@ const MemberDetails = () => {
       <div className="mt-10 text-white">
         <h3 className="text-3xl font-extrabold mb-5">Payment Status</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-          {Object.entries(paymentStatus).map(([month, status]) => (
-            <div
-              key={month}
-              className={`p-5 rounded-xl shadow-lg text-center cursor-pointer hover:scale-105 transition-transform duration-300 ${
-                status === "Paid" ? "bg-green-600" : "bg-red-500"
-              }`}
-            >
-              <span className="block text-xl font-semibold">{month}</span>
-              <span className="block text-base">{status}</span>
-            </div>
-          ))}
+          {
+            paymentStatus.map((payment)=><div
+            key={payment.month}
+            className={`p-5 rounded-xl shadow-lg text-center cursor-pointer hover:scale-105 transition-transform duration-300 ${
+              payment.status === "Paid" ? "bg-green-600" : "bg-red-500"
+            }`}
+          ><h1>{payment.month}</h1><h1>{payment.status}</h1> </div>)
+          }
         </div>
       </div>
     </div>

@@ -31,20 +31,20 @@ const AddMember = () => {
       education: "",
       social: "",
       image: "",
-      paymentStatus: {
-        January: "Unpaid",
-        February: "Unpaid",
-        March: "Unpaid",
-        April: "Unpaid",
-        May: "Unpaid",
-        June: "Unpaid",
-        July: "Unpaid",
-        August: "Unpaid",
-        September: "Unpaid",
-        October: "Unpaid",
-        November: "Unpaid",
-        December: "Unpaid",
-      },
+      paymentStatus: [
+        { month: "January", status: "Unpaid" },
+        { month: "February", status: "Unpaid" },
+        { month: "March", status: "Unpaid" },
+        { month: "April", status: "Unpaid" },
+        { month: "May", status: "Unpaid" },
+        { month: "June", status: "Unpaid" },
+        { month: "July", status: "Unpaid" },
+        { month: "August", status: "Unpaid" },
+        { month: "September", status: "Unpaid" },
+        { month: "October", status: "Unpaid" },
+        { month: "November", status: "Unpaid" },
+        { month: "December", status: "Unpaid" },
+      ],
     },
   });
 
@@ -100,6 +100,7 @@ const AddMember = () => {
       />
       <div>
         <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+          {/* Other form fields */}
           <div className="block lg:flex gap-5">
             <div className="mb-5  lg:flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -132,6 +133,8 @@ const AddMember = () => {
               )}
             </div>
           </div>
+
+          {/* Age and NID */}
           <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -164,6 +167,8 @@ const AddMember = () => {
               )}
             </div>
           </div>
+
+          {/* Profession and Blood Group */}
           <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -198,6 +203,8 @@ const AddMember = () => {
               )}
             </div>
           </div>
+
+          {/* Sex and Phone */}
           <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -230,6 +237,8 @@ const AddMember = () => {
               )}
             </div>
           </div>
+
+          {/* Current and Permanent Address */}
           <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -266,6 +275,8 @@ const AddMember = () => {
               )}
             </div>
           </div>
+
+          {/* Education and Social */}
           <div className="block lg:flex gap-5">
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
@@ -285,13 +296,13 @@ const AddMember = () => {
             </div>
             <div className="mb-5 flex-1">
               <label className="mb-3 block text-base font-medium text-[#07074D]">
-                Social
+                Social Media Profile
               </label>
               <input
                 type="text"
-                placeholder="Enter Social Information"
+                placeholder="Enter Social Media Profile URL"
                 {...register("social", {
-                  required: "Social Information is required",
+                  required: "Social Media Profile is required",
                 })}
                 className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
               />
@@ -306,28 +317,25 @@ const AddMember = () => {
             </label>
             <input
               type="file"
-              {...register("image", { required: "Image is required" })}
+              accept="image/*"
+              {...register("image")}
               className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             />
-            {errors.image && (
-              <p className="text-red-500">{errors.image.message}</p>
-            )}
           </div>
-
           {/* Payment Status */}
           <div className="mb-5">
             <label className="mb-3 block text-base font-medium text-[#07074D]">
               Payment Status
             </label>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {Object.keys(watch("paymentStatus")).map((month, index) => (
+              {watch("paymentStatus").map((payment, index) => (
                 <div key={index} className="flex gap-5 mb-5">
                   <div className="flex-1">
                     <label className="mb-3 block text-base font-medium text-[#07074D]">
-                      {month}
+                      {payment.month}
                     </label>
                     <select
-                      {...register(`paymentStatus.${month}`, {
+                      {...register(`paymentStatus.${index}.status`, {
                         required: true,
                       })}
                       className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
@@ -335,9 +343,9 @@ const AddMember = () => {
                       <option value="Paid">Paid</option>
                       <option value="Unpaid">Unpaid</option>
                     </select>
-                    {errors.paymentStatus && errors.paymentStatus[month] && (
+                    {errors.paymentStatus && errors.paymentStatus[index] && (
                       <p className="text-red-500">
-                        Payment status for {month} is required
+                        Payment status for {payment.month} is required
                       </p>
                     )}
                   </div>
@@ -346,11 +354,7 @@ const AddMember = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full rounded-md bg-[#6A64F1] py-3 px-6 text-base font-medium text-white outline-none transition duration-300 hover:bg-[#5A4BB8]"
-          >
+          <button type="submit" className="btn btn-primary">
             Add Member
           </button>
         </form>

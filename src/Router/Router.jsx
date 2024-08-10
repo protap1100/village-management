@@ -33,6 +33,7 @@ import UserProfile from "../Pages/Profile/UserProfile";
 import UpdateProfileInfo from "../Pages/Profile/UpdateProfileInfo";
 import OccasionDetails from "../Pages/Occasion/OccasionDetails";
 import ProjectDetails from "../Pages/Projects/ProjectDetails";
+import UpdateMember from "../Pages/Dashboard/ManageMember.jsx/UpdateMember";
 
 export const router = createBrowserRouter([
   {
@@ -149,6 +150,10 @@ export const router = createBrowserRouter([
       {
         path: "all-members",
         element: <AllMember></AllMember>,
+      },
+      {
+        path:"update-member/:id",
+        element : <UpdateMember></UpdateMember>
       },
       {
         path: "all-occasions",
