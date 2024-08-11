@@ -3,12 +3,12 @@ import SectionTitle from "../../../Components/Shared/SectionTitle";
 import { Link } from "react-router-dom";
 import useProjects from "../../../Hooks/useProjects";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Loading from "../../../Others/Loading";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllProjects = () => {
   const [projects, loading, refetch] = useProjects();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const handleDelete = (project) => {
     Swal.fire({
@@ -21,7 +21,7 @@ const AllProjects = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/projects/${project._id}`).then((res) => {
+        axiosSecure.delete(`/projects/${project._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             console.log(res.data)

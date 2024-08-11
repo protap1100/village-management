@@ -3,12 +3,12 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import useOccasions from "../../../Hooks/useOccasions";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Loading from "../../../Others/Loading";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllOccasions = () => {
   const [occasions, loading, refetch] = useOccasions();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const handleDelete = (occasion) => {
     Swal.fire({
@@ -21,7 +21,7 @@ const AllOccasions = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/occasions/${occasion._id}`).then((res) => {
+        axiosSecure.delete(`/occasions/${occasion._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
@@ -71,9 +71,7 @@ const AllOccasions = () => {
                 key={occasion._id}
                 className="hover:bg-gray-100 transition-colors duration-200"
               >
-                <td className="py-3 px-4 border-b text-center">
-                  {index + 1}
-                </td>
+                <td className="py-3 px-4 border-b text-center">{index + 1}</td>
                 <td className="py-3 px-4 border-b text-center">
                   {occasion.name}
                 </td>

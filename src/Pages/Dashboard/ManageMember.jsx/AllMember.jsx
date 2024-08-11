@@ -4,12 +4,12 @@ import SectionTitle from "../../../Components/Shared/SectionTitle";
 import useMember from "../../../Hooks/useMember";
 import Loading from "../../../Others/Loading";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllMembers = () => {
   const [members, memberLoading, refetch] = useMember();
 
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const handleDeleteMember = (member) => {
     Swal.fire({
@@ -22,7 +22,7 @@ const AllMembers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/member-delete/${member?._id}`).then((res) => {
+        axiosSecure.delete(`/member-delete/${member?._id}`).then((res) => {
           console.log(res);
           if (res.data.deletedCount > 0 || res.data.userDeleted > 0) {
             refetch();

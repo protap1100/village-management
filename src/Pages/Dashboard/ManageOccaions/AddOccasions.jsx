@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -19,7 +19,7 @@ const AddOccasions = () => {
     formState: { errors },
   } = useForm();
 
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     Aos.init({
@@ -31,7 +31,7 @@ const AddOccasions = () => {
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
-    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+    const res = await axiosSecure.post(image_hosting_api, imageFile, {
       headers: {
         "content-Type": "multipart/form-data",
       },
@@ -55,7 +55,7 @@ const AddOccasions = () => {
         createdAt: createdAt,
       };
 
-      const menuRes = await axiosPublic.post("/occasions", occasionData);
+      const menuRes = await axiosSecure.post("/occasions", occasionData);
 
       if (menuRes.data.insertedId) {
         reset();

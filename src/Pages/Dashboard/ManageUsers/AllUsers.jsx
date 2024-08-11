@@ -1,20 +1,20 @@
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import { FaTrashAlt } from "react-icons/fa";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../Others/Loading";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
     data: users = [],
     isLoading: userLoading,
-    refetch
+    refetch,
   } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const res = await axiosPublic(`/users`);
+      const res = await axiosSecure(`/users`);
       return res.data;
     },
   });
@@ -30,8 +30,8 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosPublic.delete(`/users-delete/${users?._id}`).then((res) => {
-            console.log(res)
+        axiosSecure.delete(`/users-delete/${users?._id}`).then((res) => {
+          console.log(res);
           if (res.data.postDeleted > 0 || res.data.userDeleted > 0) {
             refetch();
             Swal.fire({
@@ -75,7 +75,9 @@ const AllUsers = () => {
               >
                 <td className="py-3 px-4 border-b text-center">{index + 1}</td>
                 <td className="py-3 px-4 border-b text-center">{user?.name}</td>
-                <td className="py-3 px-4 border-b text-center">{user?.email}</td>
+                <td className="py-3 px-4 border-b text-center">
+                  {user?.email}
+                </td>
                 <td className="py-3 px-4 border-b text-center">
                   {user?.role || "Not Yet"}
                 </td>

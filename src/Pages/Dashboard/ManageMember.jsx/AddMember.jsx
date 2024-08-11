@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../Components/Shared/SectionTitle";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddMember = () => {
   const { user } = useAuth();
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const {
     register,
@@ -51,7 +53,7 @@ const AddMember = () => {
   const onSubmit = async (data) => {
     try {
       const imageFile = { image: data.image[0] };
-      const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      const res = await axiosSecure.post(image_hosting_api, imageFile, {
         headers: {
           "content-Type": "multipart/form-data",
         },
@@ -66,7 +68,7 @@ const AddMember = () => {
           createdAt: new Date(),
         };
 
-        await axiosPublic.post("/add-member", memberData);
+        await axiosSecure.post("/add-member", memberData);
 
         Swal.fire({
           title: "Success!",

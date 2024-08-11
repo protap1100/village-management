@@ -1,21 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../Others/Loading";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const UpdateMember = () => {
   const { id } = useParams();
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  const { register, handleSubmit, reset, errors, watch } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const { data: member = {}, isLoading: membersLoading } = useQuery({
     queryKey: ["member", id],
     queryFn: async () => {
-      const res = await axiosPublic(`/update-member/${id}`);
+      const res = await axiosSecure(`/update-member/${id}`);
       return res.data;
     },
   });
@@ -30,7 +32,7 @@ const UpdateMember = () => {
     };
 
     try {
-      const res = await axiosPublic.patch("/updating-member", memberData);
+      const res = await axiosSecure.patch("/updating-member", memberData);
 
       if (res.data?.success) {
         reset();
