@@ -34,6 +34,8 @@ import UpdateProfileInfo from "../Pages/Profile/UpdateProfileInfo";
 import OccasionDetails from "../Pages/Occasion/OccasionDetails";
 import ProjectDetails from "../Pages/Projects/ProjectDetails";
 import UpdateMember from "../Pages/Dashboard/ManageMember.jsx/UpdateMember";
+import AllGallery from "../Pages/Dashboard/ManageGallery/AllGallery";
+import AddPhotos from "../Pages/Dashboard/ManageGallery/AddPhotos";
 
 export const router = createBrowserRouter([
   {
@@ -152,8 +154,8 @@ export const router = createBrowserRouter([
         element: <AllMember></AllMember>,
       },
       {
-        path:"update-member/:id",
-        element : <UpdateMember></UpdateMember>
+        path: "update-member/:id",
+        element: <UpdateMember></UpdateMember>,
       },
       {
         path: "all-occasions",
@@ -182,6 +184,14 @@ export const router = createBrowserRouter([
       {
         path: "add-member",
         element: <AddMember></AddMember>,
+      },
+      {
+        path: "all-gallery",
+        element: <AllGallery></AllGallery>,
+      },
+      {
+        path: "add-photos",
+        element: <AddPhotos></AddPhotos>,
       },
     ],
   },

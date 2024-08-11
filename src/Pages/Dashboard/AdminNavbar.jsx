@@ -13,6 +13,7 @@ const navItems = [
   { name: "Manage Members", icon: group, path: "all-members" },
   { name: "Manage Occasions", icon: festival, path: "all-occasions" },
   { name: "Manage Projects", icon: project, path: "all-projects" },
+  { name: "Manage Gallery", icon: project, path: "all-gallery" },
   { name: "Manage Posts", icon: posts, path: "all-posts" },
   { name: "FeedBack", icon: contact, path: "feedback" },
 ];
