@@ -61,31 +61,36 @@ const AllOccasions = () => {
               <th className="py-3 px-4">End Date</th>
               <th className="py-3 px-4">Location</th>
               <th className="py-3 px-4">Description</th>
-              <th className="py-3 px-4">Delete</th>
               <th className="py-3 px-4">Update</th>
+              <th className="py-3 px-4">Delete</th>
             </tr>
           </thead>
           <tbody>
             {occasions.map((occasion, index) => (
               <tr
-                key={occasion._id}
+                key={occasion?._id}
                 className="hover:bg-gray-100 transition-colors duration-200"
               >
                 <td className="py-3 px-4 border-b text-center">{index + 1}</td>
                 <td className="py-3 px-4 border-b text-center">
-                  {occasion.name}
+                  {occasion?.name}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
-                  {new Date(occasion.startDate).toLocaleDateString()}
+                  {new Date(occasion?.startDate).toLocaleDateString()}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
-                  {new Date(occasion.endDate).toLocaleDateString()}
+                  {new Date(occasion?.endDate).toLocaleDateString()}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
-                  {occasion.location}
+                  {occasion?.location}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
-                  {occasion.description}
+                  {occasion?.description}
+                </td>
+                <td className="py-3 px-4 border-b text-center">
+                  <div className="flex justify-center">
+                    <Link to={`/admin/update-occasions/${occasion?._id}`}><FaEdit className="text-green-500 cursor-pointer" /></Link>
+                  </div>
                 </td>
                 <td className="py-3 px-4 border-b text-center">
                   <div
@@ -93,11 +98,6 @@ const AllOccasions = () => {
                     className="flex justify-center"
                   >
                     <FaTrashAlt className="text-red-500 cursor-pointer" />
-                  </div>
-                </td>
-                <td className="py-3 px-4 border-b text-center">
-                  <div className="flex justify-center">
-                    <FaEdit className="text-green-500 cursor-pointer" />
                   </div>
                 </td>
               </tr>
