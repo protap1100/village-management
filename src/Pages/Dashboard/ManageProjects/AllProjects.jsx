@@ -24,7 +24,7 @@ const AllProjects = () => {
         axiosSecure.delete(`/projects/${project._id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
-            console.log(res.data)
+            console.log(res.data);
             Swal.fire({
               title: "Deleted!",
               text: `${project.name} Has Deleted Successfully`,
@@ -66,12 +66,12 @@ const AllProjects = () => {
               <th className="py-3 px-4">Organizer</th>
               <th className="py-3 px-4">Status</th>
               <th className="py-3 px-4">Contact Info</th>
-              <th className="py-3 px-4">Delete</th>
               <th className="py-3 px-4">Update</th>
+              <th className="py-3 px-4">Delete</th>
             </tr>
           </thead>
           <tbody>
-            {projects.map((project,index) => (
+            {projects.map((project, index) => (
               <tr
                 key={project._id}
                 className="hover:bg-gray-100 transition-colors duration-200"
@@ -105,16 +105,16 @@ const AllProjects = () => {
                   {project.contactInfo}
                 </td>
                 <td className="py-3 px-4 border-b text-center">
+                  <div className="flex justify-center">
+                    <Link to={`/admin/update-project/${project._id}`}><FaEdit className="text-green-500 cursor-pointer" /></Link>
+                  </div>
+                </td>
+                <td className="py-3 px-4 border-b text-center">
                   <div
                     onClick={() => handleDelete(project)}
                     className="flex justify-center"
                   >
                     <FaTrashAlt className="text-red-500 cursor-pointer" />
-                  </div>
-                </td>
-                <td className="py-3 px-4 border-b text-center">
-                  <div className="flex justify-center">
-                    <FaEdit className="text-green-500 cursor-pointer" />
                   </div>
                 </td>
               </tr>

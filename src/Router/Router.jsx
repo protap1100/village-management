@@ -12,10 +12,10 @@ import MainOccasions from "../Pages/Occasion/MainOccasions";
 import MainProject from "../Pages/Projects/MainProject";
 import Member from "../Pages/Member/Member";
 import MemberDetails from "../Pages/Member/MemberDetails";
-import UserHome from "../Pages/UserDashboard/UserHome";
-import MyPosts from "../Pages/UserDashboard/MyPosts";
-import UserFees from "../Pages/UserDashboard/UserFees";
-import UserLayout from "../Pages/UserDashboard/UserLayout";
+// import UserHome from "../Pages/UserDashboard/UserHome";
+// import MyPosts from "../Pages/UserDashboard/MyPosts";
+// import UserFees from "../Pages/UserDashboard/UserFees";
+// import UserLayout from "../Pages/UserDashboard/UserLayout";
 import AdminLayout from "../Pages/Dashboard/AdminLayout";
 import AllMember from "../Pages/Dashboard/ManageMember.jsx/AllMember";
 import AllOccasions from "../Pages/Dashboard/ManageOccaions/AllOccasions";
@@ -37,6 +37,7 @@ import UpdateMember from "../Pages/Dashboard/ManageMember.jsx/UpdateMember";
 import AllGallery from "../Pages/Dashboard/ManageGallery/AllGallery";
 import AddPhotos from "../Pages/Dashboard/ManageGallery/AddPhotos";
 import UpdateOccasions from "../Pages/Dashboard/ManageOccaions/UpdateOccasions";
+import UpdateProject from "../Pages/Dashboard/ManageProjects/UpdateProject";
 
 export const router = createBrowserRouter([
   {
@@ -118,25 +119,25 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "user",
-    element: <UserLayout></UserLayout>,
-    errorElement: <ErrorPage></ErrorPage>,
-    children: [
-      {
-        path: "user-Home",
-        element: <UserHome></UserHome>,
-      },
-      {
-        path: "user-posts",
-        element: <MyPosts></MyPosts>,
-      },
-      {
-        path: "monthly-fees",
-        element: <UserFees></UserFees>,
-      },
-    ],
-  },
+  // {
+  //   path: "user",
+  //   element: <UserLayout></UserLayout>,
+  //   errorElement: <ErrorPage></ErrorPage>,
+  //   children: [
+  //     {
+  //       path: "user-Home",
+  //       element: <UserHome></UserHome>,
+  //     },
+  //     {
+  //       path: "user-posts",
+  //       element: <MyPosts></MyPosts>,
+  //     },
+  //     {
+  //       path: "monthly-fees",
+  //       element: <UserFees></UserFees>,
+  //     },
+  //   ],
+  // },
   {
     path: "admin",
     element: <AdminLayout></AdminLayout>,
@@ -185,6 +186,10 @@ export const router = createBrowserRouter([
       {
         path: "add-projects",
         element: <AddProjects></AddProjects>,
+      },
+      {
+        path:"update-project/:id",
+        element:<UpdateProject></UpdateProject>
       },
       {
         path: "add-member",
