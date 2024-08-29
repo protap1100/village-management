@@ -35,38 +35,38 @@ const UpdateProject = () => {
       projectId: projects?._id,
     };
 
-      try {
-        const res = await axiosSecure.patch(
-          `/update-project`,
-          updateProjectsData
-        );
+    try {
+      const res = await axiosSecure.patch(
+        `/update-project`,
+        updateProjectsData
+      );
 
-        if (res.data.success) {
-          Swal.fire({
-            title: "Success",
-            text: "projects updated successfully",
-            icon: "success",
-            confirmButtonText: "OK",
-          }).then(() => {
-            navigate("/admin/all-projects");
-            reset();
-          });
-        } else {
-          Swal.fire({
-            title: "Error",
-            text: res.data.message,
-            icon: "error",
-            confirmButtonText: "Try Again",
-          });
-        }
-      } catch (error) {
+      if (res.data.success) {
+        Swal.fire({
+          title: "Success",
+          text: "projects updated successfully",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then(() => {
+          navigate("/admin/all-projects");
+          reset();
+        });
+      } else {
         Swal.fire({
           title: "Error",
-          text: "An error occurred while updating the projects.",
+          text: res.data.message,
           icon: "error",
           confirmButtonText: "Try Again",
         });
       }
+    } catch (error) {
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred while updating the projects.",
+        icon: "error",
+        confirmButtonText: "Try Again",
+      });
+    }
   };
   return (
     <div>

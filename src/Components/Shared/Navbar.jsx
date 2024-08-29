@@ -4,11 +4,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Swal from "sweetalert2";
+import useUser from "../../Hooks/useUser";
+import Loading from "../../Others/Loading";
 
 const Navbar = () => {
-  const { user,logOut } = useAuth();
-  // console.log(user);
-  const navigate = useNavigate()
+  const { user: authUser, logOut } = useAuth();
+  const [user, userLoading] = useUser();
+
+  const navigate = useNavigate();
   const Links = [
     { name: "Home", route: "/" },
     { name: "Member", route: "/member" },
@@ -18,9 +21,17 @@ const Navbar = () => {
     { name: "Rules", route: "/rules" },
     { name: "Contact Us", route: "/contactUs" },
     // { name: "About", route: "/aboutUs" },
-    { name: "Admin", route: "admin/admin-home" },
   ];
   let [open, setOpen] = useState(false);
+
+  user.role === "admin" ? Links.push({ name: "Admin", route: "admin/admin-home" }) : ""
+
+
+  if (userLoading) {
+    return <Loading></Loading>;
+  }
+
+  console.log(user);
 
   const handleLogout = () => {
     logOut()
@@ -68,7 +79,7 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          {user?.displayName ? (
+          {authUser?.displayName ? (
             <div className="dropdown lg:dropdown-end dropdown-start ml-6 mt-1 text-xl flex items-start lg:items-center justify-start">
               <div tabIndex={0} role="button" className=" lg:-ml-0 -ml-6">
                 <GiHamburgerMenu></GiHamburgerMenu>

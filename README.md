@@ -1,2 +1,2 @@
-Village Manegment System With MERN
+Village Management System With MERN
 protap
