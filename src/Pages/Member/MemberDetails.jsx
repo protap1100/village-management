@@ -80,7 +80,7 @@ const MemberDetails = () => {
           </p>
           <p className="text-lg">
             <span className="font-semibold">Permanent Address: </span>
-            {permanentAddress}
+            {permanentAddress}  
           </p>
           <p className="text-lg">
             <span className="font-semibold">Education: </span>
@@ -92,9 +92,9 @@ const MemberDetails = () => {
               href={social}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-pink-300 transition-colors duration-300"
+              className="underline hover:text-pink-300 transition-colors duration-300 "
             >
-              {social}
+              Facebook
             </a>
           </p>
         </div>

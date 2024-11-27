@@ -7,7 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
@@ -26,6 +26,7 @@ const SignUp = () => {
   const onSubmit = (data) => {
     const { name, email, password, photoUrl } = data;
     console.log(name, email, photoUrl, password);
+    console.log("Hi")
 
     if (!/(?=.*[a-z])/.test(password)) {
       toast.error("Password must contain at least one lowercase letter", {
@@ -104,6 +105,7 @@ const SignUp = () => {
 
   return (
     <div>
+      <ToastContainer></ToastContainer>
       <Helmet>
         <title>BGTS || Sign Up</title>
         <link rel="icon" href="register.png" type="image/png" />

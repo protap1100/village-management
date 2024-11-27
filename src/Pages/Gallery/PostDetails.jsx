@@ -33,21 +33,30 @@ const PostDetails = () => {
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    const res = await axiosPublic.post(`/post/${id}/comments`, {
-      uniqueId: uuidv4(),
-      commentUser: users?._id,
-      comment: comment,
-      author: user?.displayName,
-      photo: user?.photoURL,
-    });
-    setComment("");
-    refetch();
-    console.log(res.status);
-    if (res.status === 200) {
+    if (users) {
+      const res = await axiosPublic.post(`/post/${id}/comments`, {
+        uniqueId: uuidv4(),
+        commentUser: users?._id,
+        comment: comment,
+        author: user?.displayName,
+        photo: user?.photoURL,
+      });
+      setComment("");
+      refetch();
+      console.log(res.status);
+      if (res.status === 200) {
+        Swal.fire({
+          title: "Comment added",
+          text: "Comment Added Successfully",
+          icon: "success",
+          timer: 2000,
+        });
+      }
+    } else {
       Swal.fire({
-        title: "Comment added",
-        text: "Comment Added Successfully",
-        icon: "success",
+        title: "Login",
+        icon: "error",
+        text: "Please Login To Comment",
         timer: 2000,
       });
     }

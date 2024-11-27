@@ -23,6 +23,7 @@ const Post = ({ refetch }) => {
     return <Loading></Loading>;
   }
   // console.log(users._id);
+  // console.log(users?.photoUrl)
 
   const onSubmit = async (data) => {
     // console.log(data)
@@ -42,6 +43,7 @@ const Post = ({ refetch }) => {
         user_email: user?.email,
         added_on: createdAt,
         user_id: users?._id,
+        user_image: users?.photoUrl,
         likes: [],
         comment: [],
       };
@@ -65,7 +67,7 @@ const Post = ({ refetch }) => {
     <>
       <div>
         <h1 className="text-xl font-bold text-orange-500 text-center mt-3">
-          Make A Post{" "}
+          Make A Post
         </h1>
       </div>
       <div className=" flex justify-center items-center ">

@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 // import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const image_hosting_key = import.meta.env.VITE_IMBB_API_URL;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -12,6 +13,8 @@ const AddMember = () => {
   const { user } = useAuth();
   // const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     register,
@@ -60,6 +63,7 @@ const AddMember = () => {
       });
 
       if (res.data.success) {
+        navigate(location?.state ? location.state : "/");
         const memberData = {
           ...data,
           image: res.data.data.url,

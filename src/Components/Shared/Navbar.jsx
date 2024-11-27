@@ -31,7 +31,7 @@ const Navbar = () => {
     return <Loading></Loading>;
   }
 
-  console.log(user);
+  // console.log(user);
 
   const handleLogout = () => {
     logOut()

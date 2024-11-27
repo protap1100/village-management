@@ -8,7 +8,7 @@ import Loading from "../../Others/Loading";
 import Swal from "sweetalert2";
 
 const SingleCard = ({ post, refetch }) => {
-  const { _id, image, caption, added_by, added_on, likes, comment } = post;
+  const { _id, image, caption, added_by,user_image, added_on, likes, comment } = post;
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const addedDate = moment(added_on);
@@ -62,7 +62,7 @@ const SingleCard = ({ post, refetch }) => {
         title: "Unable To Like",
         text: "Please Login To Like",
         timer: 3000,
-        icon: "success",
+        icon: "error",
       });
     }
   };
@@ -85,7 +85,7 @@ const SingleCard = ({ post, refetch }) => {
   return (
     <div className="space-y-2 relative bg-gray-100 rounded p-2">
       <div className="flex gap-2 items-start">
-        <img src={image} className="h-10 w-10 rounded" alt="" />
+        <img src={user_image} className="h-10 w-10 rounded" alt="" />
         <Link>
           <div className="hover:text-green-600">
             <h1 className=" font-semibold">{added_by}</h1>
