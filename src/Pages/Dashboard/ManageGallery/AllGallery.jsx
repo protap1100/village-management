@@ -83,7 +83,7 @@ const AllGallery = () => {
                 <td className="py-3 px-4 border-b text-center">
                   {photo.createdAt.slice(0, 10)}
                 </td>
-                <td className="py-3 px-4 border-b text-center">
+                <td onClick={()=>console.log('hello world')} className="py-3 px-4 border-b text-center">
                   <div className="flex justify-center">
                     <FaEdit className="text-green-500 cursor-pointer" />
                   </div>

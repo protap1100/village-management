@@ -54,14 +54,14 @@ const VillageGallery = () => {
           <SwiperSlide key={photo._id}>
             <div className="my-10">
               <div className="pl-4 lg:pl-0 text-center lg:text-left">
-                <h1 className="font-bold text-xl text-green-500">
+                <h1 className="font-bold text-lg text-green-500">
                   Added Date: {photo.createdAt.slice(0, 10)}
                 </h1>
-                <h1 className="font-bold text-xl text-green-500">
+                <h1 className="font-bold text-lg text-green-500">
                   Occasions: {photo.title}
                 </h1>
-                <h1 className="font-bold text-xl text-green-500">
-                  Description: {photo.description}
+                <h1 className="font-light text-base text-green-500">
+                   {photo.description}
                 </h1>
               </div>
               <div className="flex lg:justify-start justify-center ">
