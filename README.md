@@ -83,14 +83,11 @@ Experience the application live: [Village Management System Live](https://villag
      ```
 
 
-## 📂 Project Structure
-
-
 ## 🌟 Features in Development
 
 - **Push Notifications** for event reminders and updates.
-- **Advanced Search** for posts and members.
 - **Mobile App Integration** for better accessibility.
+- **Make the ui better** Making ui more beautiful.
 
 
 ## ✨ Acknowledgments
