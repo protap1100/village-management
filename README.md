@@ -17,6 +17,7 @@ Experience the application live: [Village Management System Live](https://villag
 - **Village Mission**: Display the village’s goals and vision.
 - **Village Rules**: Highlight the rules and guidelines for a harmonious community.
 - **Village Projects**: Manage and track ongoing and completed village projects.
+- **Contact Us**: Users can reach out through a dedicated contact form.
 
 ## 🛠️ Technologies Used
 
@@ -91,13 +92,6 @@ Experience the application live: [Village Management System Live](https://villag
 - **Advanced Search** for posts and members.
 - **Mobile App Integration** for better accessibility.
 
-## 🤝 Contributing
-
-We welcome contributions! Please fork the repository and create a pull request with your changes. For major changes, open an issue first to discuss what you would like to implement.
-
-## 📜 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## ✨ Acknowledgments
 
