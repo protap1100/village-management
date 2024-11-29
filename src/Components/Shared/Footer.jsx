@@ -24,26 +24,26 @@ const Footer = () => {
         </div>
         <div className="col-span-3  px-3 flex justify-center items-center">
           <ul className="flex gap-4 flex-col lg:flex-row">
-            <li>
+            <li className="text-center">
               <Link
                 to="#"
-                className="text-blue-900 hover:text-blue-600 transition duration-300"
+                className="text-blue-900 text-center hover:text-blue-600 transition duration-300"
               >
                 Terms of Service
               </Link>
             </li>
-            <li>
+            <li className="text-center">
               <Link
                 to="#"
-                className="text-blue-900 hover:text-blue-600 transition duration-300"
+                className="text-blue-900 text-center hover:text-blue-600 transition duration-300"
               >
                 Privacy Policy
               </Link>
             </li>
-            <li>
+            <li className="text-center">
               <Link
                 to="#"
-                className="text-blue-900 hover:text-blue-600 transition duration-300"
+                className="text-blue-900 text-center hover:text-blue-600 transition duration-300"
               >
                 Contact Us
               </Link>
