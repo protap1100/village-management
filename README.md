@@ -48,7 +48,7 @@ Experience the application live: [Village Management System Live](https://villag
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-username/village-management-system.git
+   git clone https://github.com/protap1100/village-management.git
    cd village-management-system
    ```
 
