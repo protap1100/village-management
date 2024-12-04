@@ -38,7 +38,7 @@ const AboutUs = () => {
         </p>
         <p>
           Thank you for choosing our service. Together, we can make student life
-          easier, healthier, and more enjoyable!
+          easier, healthier, and more enjoyable! BGTS
         </p>
       </div>
     </div>
