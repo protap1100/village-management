@@ -39,6 +39,14 @@ const Footer = () => {
               >
                 Privacy Policy
               </Link>
+            </li>{" "}
+            <li className="text-center">
+              <Link
+                to="/rules"
+                className="text-blue-900 text-center hover:text-blue-600 transition duration-300"
+              >
+                Rules
+              </Link>
             </li>
             <li className="text-center">
               <Link
