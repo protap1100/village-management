@@ -37,8 +37,8 @@ const Login = () => {
       .catch((error) => {
         const message =
           error.code === "auth/user-not-found" || error.code === "auth/wrong-password"
-            ? "Wrong Password or Email. Please try again with correct email and password."
-            : "Wrong Password or Email. Please try again with correct email and password.";
+            ? "Wrong Password or Email"
+            : "Wrong Password or Email";
         setErrorMessage(message);
         toast.error(message);
       });
