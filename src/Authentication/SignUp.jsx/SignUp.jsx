@@ -78,7 +78,7 @@ const SignUp = () => {
                 date: new Date(),
               };
               axiosPublic.post("/register", userInfo).then((res) => {
-                console.log("user added to the database");
+                // console.log("user added to the database");
                 if (res.data.insertedId) {
                   reset();
                   Swal.fire({
