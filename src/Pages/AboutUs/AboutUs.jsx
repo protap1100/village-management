@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../Components/Shared/SectionTitle";
 import { FcAbout } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
@@ -38,7 +39,7 @@ const AboutUs = () => {
         </p>
         <p>
           Thank you for choosing our service. Together, we can make student life
-          easier, healthier, and more enjoyable! BGTS
+          easier, healthier, and more enjoyable! <Link to='/'>BGTS</Link>
         </p>
       </div>
     </div>
