@@ -12,7 +12,7 @@ const Rules = () => {
       <SectionTitle
       icon={<FcRules></FcRules>}
         heading={"Rules About Bgts"}
-        subHeading={"Rules To Follow To Get The Membership"}
+        subHeading={"Rules To Follow To Get The Membership of our village"}
       ></SectionTitle>
       <div className="mt-6">
         <table className="rules-table w-full bg-white rounded-lg shadow-md overflow-hidden animate__animated animate__fadeInUp">
