@@ -6,7 +6,7 @@ const Rules = () => {
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
         <Helmet>
-        <title>BGTS || Member</title>
+        <title>BGTS || Members</title>
         <link rel="icon" href="rules.png" type="image/png" />
       </Helmet>
       <SectionTitle
