@@ -17,7 +17,7 @@ const AboutUs = () => {
       />
       <div className="mt-6 text-gray-800">
         <p className="mb-4">
-          Welcome to our platform! We are dedicated to providing a convenient
+          Welcome to our platform! We are dedicated to providing 
           and seamless meal ordering experience for students. Our mission is to
           ensure that students have access to a variety of nutritious and
           delicious meals with just a few clicks.
